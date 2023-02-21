@@ -1,9 +1,20 @@
 import { Box, Heading, Text, VStack } from "@chakra-ui/react";
 import { ReactLenis, useLenis } from "@studio-freight/react-lenis";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import HeroHome from "../HeroHome";
 
 function index() {
+
+
+  const lenis = useLenis((state,a,b,c) => {
+    console.log(state.animatedScroll)
+  });
+
+
+  
+
+
+
   return (
     <ReactLenis root options={{}}>
       <HeroHome />

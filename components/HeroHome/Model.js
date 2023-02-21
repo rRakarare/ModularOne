@@ -120,11 +120,7 @@ export default function Model({ url, ...props }) {
     });
   }, [actions]);
 
-  let a = false;
 
-  useEffect(() => {
-    console.log(scrollStates);
-  }, [scrollStates]);
 
   let start, previousTimeStamp;
 
@@ -142,17 +138,22 @@ export default function Model({ url, ...props }) {
 
     names.forEach((item) => {
       const action = actions[item.animation];
-
-      // console.log(action.getClip().duration)
-
       action.time = offset * 10;
     });
+
+    m1group.current.scale.set(0.7, 0.7, 0.7);
 
     m1group.current.children.forEach((child, index) => {
       child.geometry.computeVertexNormals();
       child.position.set(...names[index].move.map((item) => item * offset));
       child.rotation.y =
-        ((Math.cos(index + elapsed / 200) * Math.PI) / 30) * offset * 20;
+        ((Math.cos(index + elapsed / 200) * Math.PI) / 30) * offset;
+
+      child.scale.set(
+        ((Math.sin(index + elapsed / 200) * Math.PI) / 30) * offset * 10 + 0.6,
+        ((Math.sin(index + elapsed / 200) * Math.PI) / 30) * offset * 10 + 0.6,
+        ((Math.sin(index + elapsed / 200) * Math.PI) / 30) * offset * 10 + 0.6
+      );
     });
 
     previousTimeStamp = time;
@@ -169,7 +170,7 @@ export default function Model({ url, ...props }) {
 
   return (
     <group>
-      <group scale={5} ref={m1group} {...props} dispose={null}>
+      <group ref={m1group} {...props} dispose={null}>
         <mesh
           name="OneA5"
           geometry={nodes.OneA5.geometry}
