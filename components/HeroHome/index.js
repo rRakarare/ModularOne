@@ -8,7 +8,9 @@ import {
   OrbitControls,
   Scroll,
   ScrollControls,
+  Sparkles,
   Stage,
+  Stars,
 } from "@react-three/drei";
 import { Loader } from "@react-three/drei";
 import Model from "./Model";
@@ -59,6 +61,7 @@ export default function HeroHome({ animateLenis }) {
               shadows="contact"
               environment="city"
             >
+                <Sparkles count={50} scale={1} size={1} speed={0.4} />
               <Float speed={3} rotationIntensity={1}>
                 <Model url="/compressed.glb" />
               </Float>

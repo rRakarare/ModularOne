@@ -1,7 +1,7 @@
 import React, { useRef } from "react";
 import * as THREE from "three";
 import { useFrame } from "@react-three/fiber";
-import { Box, useAnimations, useGLTF, useScroll } from "@react-three/drei";
+import { Box, Stars, useAnimations, useGLTF, useScroll } from "@react-three/drei";
 import { MeshPhysicalMaterial } from "three";
 import { MeshBasicMaterial } from "three";
 import { MeshPhongMaterial } from "three";
@@ -141,7 +141,7 @@ export default function Model({ url, ...props }) {
       action.time = offset * 10;
     });
 
-    m1group.current.scale.set(0.7, 0.7, 0.7);
+
 
     m1group.current.children.forEach((child, index) => {
       child.geometry.computeVertexNormals();
@@ -150,9 +150,9 @@ export default function Model({ url, ...props }) {
         ((Math.cos(index + elapsed / 200) * Math.PI) / 30) * offset;
 
       child.scale.set(
-        ((Math.sin(index + elapsed / 200) * Math.PI) / 30) * offset * 10 + 0.6,
-        ((Math.sin(index + elapsed / 200) * Math.PI) / 30) * offset * 10 + 0.6,
-        ((Math.sin(index + elapsed / 200) * Math.PI) / 30) * offset * 10 + 0.6
+        ((Math.sin(index + elapsed / 200) * Math.PI) / 30) * offset * 10 + 1,
+        ((Math.sin(index + elapsed / 200) * Math.PI) / 30) * offset * 10 + 1,
+        ((Math.sin(index + elapsed / 200) * Math.PI) / 30) * offset * 10 + 1
       );
     });
 
@@ -170,7 +170,9 @@ export default function Model({ url, ...props }) {
 
   return (
     <group>
+      
       <group ref={m1group} {...props} dispose={null}>
+        
         <mesh
           name="OneA5"
           geometry={nodes.OneA5.geometry}
