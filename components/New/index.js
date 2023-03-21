@@ -3,7 +3,7 @@ import { ReactLenis, useLenis } from "@studio-freight/react-lenis";
 import React, { useEffect, useState } from "react";
 import HeroHome from "../HeroHome";
 
-function index() {
+function New() {
   const lenis = useLenis((state, a, b, c) => {
     // console.log(state.animatedScroll);
   });
@@ -49,4 +49,4 @@ function index() {
   );
 }
 
-export default index;
+export default New;
