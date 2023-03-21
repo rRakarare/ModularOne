@@ -1,28 +1,24 @@
-import { Box, Heading, Text, VStack } from "@chakra-ui/react";
+import { Box, Container, Heading, Text, VStack } from "@chakra-ui/react";
 import { ReactLenis, useLenis } from "@studio-freight/react-lenis";
 import React, { useEffect, useState } from "react";
 import HeroHome from "../HeroHome";
 
 function index() {
   const lenis = useLenis((state, a, b, c) => {
-    console.log(state.animatedScroll);
+    // console.log(state.animatedScroll);
   });
 
   return (
-    <ReactLenis root options={{}}>
+    <ReactLenis root options={{
+      lerp:0.05
+    }}>
       <HeroHome />
-      <Heading  fontSize={"8rem"}>
-        Modular <Text color={"yellow.300"}>One</Text>
-      </Heading>
-      <Heading position={"sticky"} top={"11vh"} fontSize={"8rem"}>
+      <Box height={"100vh"}/>
+      <Box mx={40}>
+      <Heading position={"sticky"} top={"40vh"} fontSize={"8rem"}>
         Modular <Text color={"yellow.300"}>One</Text>
       </Heading>
       <VStack px={20} width={"100%"} mt={"100vh"}>
-        <Box width={"100%"} height={"800px"}>
-          <Heading fontSize={"8rem"}>
-            Modular <Text color={"yellow.300"}>One</Text>
-          </Heading>
-        </Box>
         <Box
           width={"100%"}
           height={"800px"}
@@ -48,6 +44,7 @@ function index() {
           <Heading>:(</Heading>
         </Box>
       </VStack>
+      </Box>
     </ReactLenis>
   );
 }
