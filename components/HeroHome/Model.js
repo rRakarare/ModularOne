@@ -1,5 +1,11 @@
 import React, { useRef } from "react";
-import { Box, Stars, useAnimations, useGLTF, useScroll } from "@react-three/drei";
+import {
+  Box,
+  Stars,
+  useAnimations,
+  useGLTF,
+  useScroll,
+} from "@react-three/drei";
 import { useEffect } from "react";
 import { useLenis } from "@studio-freight/react-lenis";
 
@@ -12,11 +18,11 @@ const genArray = () => {
 };
 
 export default function Model({ url, ...props }) {
-
   const lenis = useLenis((state) => {});
 
   const m1group = useRef();
   const { nodes, materials, animations } = useGLTF("/neu4.glb");
+  const { nodes: nodesInsta, materials: materialsInsta } = useGLTF("/insta.glb");
 
   const { actions } = useAnimations(animations, m1group);
 
@@ -109,8 +115,6 @@ export default function Model({ url, ...props }) {
     });
   }, [actions]);
 
-
-
   let start, previousTimeStamp;
 
   let myreq;
@@ -125,13 +129,10 @@ export default function Model({ url, ...props }) {
     const delta = time - previousTimeStamp;
     const offset = lenis.progress;
 
-
     names.forEach((item) => {
       const action = actions[item.animation];
       action.time = offset * 30;
     });
-
-
 
     m1group.current.children.forEach((child, index) => {
       child.geometry.computeVertexNormals();
@@ -143,11 +144,7 @@ export default function Model({ url, ...props }) {
       child.rotation.x =
         ((Math.cos(index + elapsed / 200) * Math.PI) / 30) * offset * 0.5;
 
-      child.scale.set(
-        (1-offset*2),
-        (1-offset*2),
-        (1-offset*2)
-      );
+      child.scale.set(1 - offset * 2, 1 - offset * 2, 1 - offset * 2);
     });
 
     previousTimeStamp = time;
@@ -163,10 +160,18 @@ export default function Model({ url, ...props }) {
   }, []);
 
   return (
-    
-      
+    <group>
+      <group  {...props} dispose={null}>
+        <mesh
+          geometry={nodesInsta.Plane001.geometry}
+          material={materialsInsta["Material.001"]}
+          position={[2, 0.15, 0]}
+          rotation={[Math.PI/2, 0, 1.1]}
+          scale={.4}
+        />
+      </group>
+
       <group ref={m1group} {...props} dispose={null}>
-        
         <mesh
           name="OneA5"
           geometry={nodes.OneA5.geometry}
@@ -308,8 +313,9 @@ export default function Model({ url, ...props }) {
           morphTargetInfluences={nodes.ModA14.morphTargetInfluences}
         />
       </group>
-    
+    </group>
   );
 }
 
 useGLTF.preload("/neu4.glb");
+
