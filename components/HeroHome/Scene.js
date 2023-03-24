@@ -4,6 +4,7 @@ import { useLenis } from "@studio-freight/react-lenis";
 import React, { Suspense } from "react";
 import Model from "./Model";
 import M from "./Models/M";
+import Models from "./Models/Models";
 import One from "./Models/One";
 
 function Scene() {
@@ -11,7 +12,7 @@ function Scene() {
 
   // const { nodes, materials, animations } = useGLTF("/One.glb");
 
-  const { nodes, materials, animations } = useGLTF("@/public/One.glb");
+  // const { nodes, materials, animations } = useGLTF("/One.glb");
 
   return (
     
@@ -25,13 +26,11 @@ function Scene() {
             offset: 0.4,
           }}
         >
-          {/* <Sparkles count={20} scale={1} size={4000} speed={0.4} /> */}
           <Float speed={2} rotationIntensity={1}>
             {/* <Model position={[1, 1, 0.5]} url="/compressed.glb" />
             <Model position={[1, 1, 0.3]} url="/compressed.glb" /> */}
 
-            <M />
-            <One />
+            <Models />
           </Float>
         </Stage>
       </Canvas>

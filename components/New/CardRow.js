@@ -8,7 +8,7 @@ function CardRow() {
     const [x, setX] = useState(0);
 
     const lenis = useLenis((state, a, b, c) => {
-      console.log(state.progress);
+      // console.log(state.progress);
       setX(-state.progress*2000);
     });
 

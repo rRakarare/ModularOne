@@ -1,12 +1,10 @@
 import React, { useRef } from "react";
 import { useGLTF, useAnimations } from "@react-three/drei";
 
-function M() {
+function M({mProps, groupM}) {
 
+  const { nodes, materials } = mProps;
 
-  const groupM = useRef();
-  const { nodes, materials, animations } = useGLTF("/M.glb");
-  const { actions } = useAnimations(animations, groupM);
 
   return (
     <group ref={groupM}>
@@ -112,6 +110,6 @@ function M() {
   )
 }
 
-useGLTF.preload("/M.glb");
+
 
 export default M

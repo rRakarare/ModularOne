@@ -6,7 +6,7 @@ const genArray = () => {
   ];
 };
 
-export const names = [
+export const mAnimations = [
   {
     animation: "ma1",
     move: genArray(),
@@ -62,8 +62,10 @@ export const names = [
   {
     animation: "ma14",
     move: genArray(),
-  },
-  {
+  }
+];
+export const oneAnimation = [
+    {
     animation: "oa1",
     move: genArray(),
   },

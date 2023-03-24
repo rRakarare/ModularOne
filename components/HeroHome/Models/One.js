@@ -1,14 +1,16 @@
 import React, { useRef } from "react";
 import { useGLTF, useAnimations } from "@react-three/drei";
 
-function One() {
+function One({oneProps, groupOne}) {
 
-    const group = useRef();
-    const { nodes, materials, animations } = useGLTF("/One.glb");
-    const { actions } = useAnimations(animations, group);
+
+  const {nodes, materials} = oneProps;
+
+  
+    
 
   return (
-    <group>
+    <group ref={groupOne}>
         <mesh
           name="OneA5"
           geometry={nodes.OneA5.geometry}
@@ -55,6 +57,6 @@ function One() {
   )
 }
 
-useGLTF.preload("/One.glb");
+
 
 export default One
