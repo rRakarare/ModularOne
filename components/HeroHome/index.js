@@ -45,6 +45,7 @@ export default function HeroHome({ animateLenis }) {
       <Box
         w={"100%"}
         h={"100vh"}
+        minH={"600px"}
         style={{
           zIndex: -1,
           background: grad,
