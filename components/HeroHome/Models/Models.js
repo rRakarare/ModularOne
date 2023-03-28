@@ -1,7 +1,7 @@
 import { useAnimations, useGLTF } from "@react-three/drei";
 import { useLenis } from "@studio-freight/react-lenis";
 import React, { useEffect, useRef } from "react";
-import { mAnimations, oneAnimation } from "./helpers";
+import { getModularProps, mAnimations, oneAnimation } from "./helpers";
 import * as THREE from "three";
 import M from "./M";
 import One from "./One";
@@ -19,6 +19,10 @@ function Models() {
   const { actions: oneActions } = useAnimations(oneProps.animations, groupOne);
   const { actions: mActions } = useAnimations(mProps.animations, groupM);
 
+  const modularProps = getModularProps(0.11);
+  const modularProps2 = getModularProps(-0.11);
+  const modularKeys = Object.keys(modularProps);
+
   useEffect(() => {
     oneAnimation.forEach((item) => {
       const action = oneActions[item.animation];
@@ -27,8 +31,8 @@ function Models() {
   }, [oneActions]);
 
   useEffect(() => {
-    mAnimations.forEach((item) => {
-      const action = mActions[item.animation];
+    modularKeys.forEach((key) => {
+      const action = mActions[modularProps[key].animation];
       action.play().paused = true;
     });
   }, [mActions]);
@@ -67,8 +71,8 @@ function Models() {
       );
     });
 
-    mAnimations.forEach((item) => {
-      const action = mActions[item.animation];
+    modularKeys.forEach((key) => {
+      const action = mActions[modularProps[key].animation];
       action.time = THREE.MathUtils.damp(
         action.time,
         action.getClip().duration * offset * 10,
@@ -77,12 +81,17 @@ function Models() {
       );
     });
 
-
     groupOne.current.children.forEach((child, index) => {});
     groupOne2.current.children.forEach((child, index) => {});
 
     groupM.current.children.forEach((child, index) => {
-      child.rotation.set(0, offset * 20, 0);
+      // const defaultPosition = [
+      //   modularProps[child.name].position[0] * (1 + offset * modularProps[child.name].move[0]),
+      //   modularProps[child.name].position[1] * (1 + offset * modularProps[child.name].move[1]),
+      //   modularProps[child.name].position[2] * (1 + offset * modularProps[child.name].move[2]),
+      // ]
+
+      // child.position.set(...defaultPosition);
     });
 
     groupM2.current.children.forEach((child, index) => {});
@@ -101,8 +110,8 @@ function Models() {
 
   return (
     <group>
-      <M mProps={mProps} groupM={groupM} position={[0, 0, -0.1]} />
-      <M mProps={mProps} groupM={groupM2} position={[0, 0, 0.1]} />
+      <M mProps={mProps} groupM={groupM} modularProps={modularProps} />
+      <M mProps={mProps} groupM={groupM2} modularProps={modularProps2} />
 
       <One oneProps={oneProps} groupOne={groupOne} position={[0, 0, -0.1]} />
       <One oneProps={oneProps} groupOne={groupOne2} position={[0, 0, 0.1]} />

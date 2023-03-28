@@ -1,7 +1,7 @@
 import React, { useRef } from "react";
 import { useGLTF, useAnimations } from "@react-three/drei";
 
-function M({mProps, groupM, ...rest}) {
+function M({mProps, groupM, modularProps, z, ...rest}) {
 
   const { nodes, materials } = mProps;
 
@@ -17,7 +17,7 @@ function M({mProps, groupM, ...rest}) {
           material={materials.SVGMat}
           morphTargetDictionary={nodes.ModA1.morphTargetDictionary}
           morphTargetInfluences={nodes.ModA1.morphTargetInfluences}
-          position={[-0.84173274, -0.82683408, -0.11065874]}
+          position={modularProps['ModA1'].position}
         />
         <mesh
           name="ModA2"
@@ -27,7 +27,7 @@ function M({mProps, groupM, ...rest}) {
           material={materials.SVGMat}
           morphTargetDictionary={nodes.ModA2.morphTargetDictionary}
           morphTargetInfluences={nodes.ModA2.morphTargetInfluences}
-          position={[-0.84173274, -0.53931117, -0.11065874]}
+          position={modularProps['ModA2'].position}
         />
         <mesh
           name="ModA3"
@@ -37,7 +37,7 @@ function M({mProps, groupM, ...rest}) {
           material={materials.SVGMat}
           morphTargetDictionary={nodes.ModA3.morphTargetDictionary}
           morphTargetInfluences={nodes.ModA3.morphTargetInfluences}
-          position={[-0.84173274, -0.24812414, -0.11065872]}
+          position={modularProps['ModA3'].position}
         />
         <mesh
           name="ModA4"
@@ -47,7 +47,7 @@ function M({mProps, groupM, ...rest}) {
           material={materials.SVGMat}
           morphTargetDictionary={nodes.ModA4.morphTargetDictionary}
           morphTargetInfluences={nodes.ModA4.morphTargetInfluences}
-          position={[-0.84173274, 0.0533159, -0.11065871]}
+          position={modularProps['ModA4'].position}
         />
         <mesh
           name="ModA5"
@@ -57,7 +57,7 @@ function M({mProps, groupM, ...rest}) {
           material={materials.SVGMat}
           morphTargetDictionary={nodes.ModA5.morphTargetDictionary}
           morphTargetInfluences={nodes.ModA5.morphTargetInfluences}
-          position={[-0.84173274, 0.35680649, -0.1106587]}
+          position={modularProps['ModA5'].position}
         />
         <mesh
           name="ModA6"
@@ -67,7 +67,7 @@ function M({mProps, groupM, ...rest}) {
           material={materials.SVGMat}
           morphTargetDictionary={nodes.ModA6.morphTargetDictionary}
           morphTargetInfluences={nodes.ModA6.morphTargetInfluences}
-          position={[-0.86745083, 0.72289407, -0.1106587]}
+          position={modularProps['ModA6'].position}
         />
         <mesh
           name="ModA7"
@@ -77,7 +77,7 @@ function M({mProps, groupM, ...rest}) {
           material={materials.SVGMat}
           morphTargetDictionary={nodes.ModA7.morphTargetDictionary}
           morphTargetInfluences={nodes.ModA7.morphTargetInfluences}
-          position={[-0.68387389, 0.7686131, -0.11065871]}
+          position={modularProps['ModA7'].position}
         />
         <mesh
           name="ModA8"
@@ -87,7 +87,7 @@ function M({mProps, groupM, ...rest}) {
           material={materials.SVGMat}
           morphTargetDictionary={nodes.ModA8.morphTargetDictionary}
           morphTargetInfluences={nodes.ModA8.morphTargetInfluences}
-          position={[-0.43746042, 0.5764001, -0.11065871]}
+          position={modularProps['ModA8'].position}
         />
         <mesh
           name="ModA9"
@@ -97,7 +97,7 @@ function M({mProps, groupM, ...rest}) {
           material={materials.SVGMat}
           morphTargetDictionary={nodes.ModA9.morphTargetDictionary}
           morphTargetInfluences={nodes.ModA9.morphTargetInfluences}
-          position={[-0.22819176, 0.36713916, -0.11065871]}
+          position={modularProps['ModA9'].position}
         />
         <mesh
           name="ModA10"
@@ -107,7 +107,7 @@ function M({mProps, groupM, ...rest}) {
           material={materials.SVGMat}
           morphTargetDictionary={nodes.ModA10.morphTargetDictionary}
           morphTargetInfluences={nodes.ModA10.morphTargetInfluences}
-          position={[-0.00335005, 0.21566018, -0.11065871]}
+          position={modularProps['ModA10'].position}
         />
         <mesh
           name="ModA11"
@@ -117,7 +117,7 @@ function M({mProps, groupM, ...rest}) {
           material={materials.SVGMat}
           morphTargetDictionary={nodes.ModA11.morphTargetDictionary}
           morphTargetInfluences={nodes.ModA11.morphTargetInfluences}
-          position={[0.22186945, 0.3662512, -0.11065871]}
+          position={modularProps['ModA11'].position}
         />
         <mesh
           name="ModA12"
@@ -127,7 +127,7 @@ function M({mProps, groupM, ...rest}) {
           material={materials.SVGMat}
           morphTargetDictionary={nodes.ModA12.morphTargetDictionary}
           morphTargetInfluences={nodes.ModA12.morphTargetInfluences}
-          position={[0.44498059, 0.5893572, -0.11065871]}
+          position={modularProps['ModA12'].position}
         />
         <mesh
           name="ModA13"
@@ -137,7 +137,7 @@ function M({mProps, groupM, ...rest}) {
           material={materials.SVGMat}
           morphTargetDictionary={nodes.ModA13.morphTargetDictionary}
           morphTargetInfluences={nodes.ModA13.morphTargetInfluences}
-          position={[0.66323662, 0.7931447, -0.11065871]}
+          position={modularProps['ModA13'].position}
         />
         <mesh
           name="ModA14"
@@ -147,7 +147,7 @@ function M({mProps, groupM, ...rest}) {
           material={materials.SVGMat}
           morphTargetDictionary={nodes.ModA14.morphTargetDictionary}
           morphTargetInfluences={nodes.ModA14.morphTargetInfluences}
-          position={[0.85404348, 0.84076309, -0.11065869]}
+          position={modularProps['ModA14'].position}
         />
     </group>
   )
