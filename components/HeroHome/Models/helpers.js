@@ -1,8 +1,8 @@
 const genArray = () => {
   return [
-    (Math.random() - 0.5) * 10,
-    (Math.random() - 0.5) * 5,
-    (Math.random() - 0.5) * 4,
+    (Math.random()) * 5,
+    (Math.random()) * 1,
+    (Math.random()) * 1,
   ];
 };
 

@@ -49,8 +49,7 @@ function New() {
           <Box height={"800px"}>
             <Heading>:)</Heading>
           </Box>
-          <CardRow />
-          <Box height={"3400px"}></Box>
+          
         </VStack>
       </Box>
     </ReactLenis>

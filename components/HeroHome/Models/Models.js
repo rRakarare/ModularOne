@@ -1,4 +1,4 @@
-import { useAnimations, useGLTF } from "@react-three/drei";
+import { Sparkles, useAnimations, useGLTF } from "@react-three/drei";
 import { useLenis } from "@studio-freight/react-lenis";
 import React, { useEffect, useRef } from "react";
 import { getModularProps, mAnimations, oneAnimation } from "./helpers";
@@ -9,6 +9,8 @@ import One from "./One";
 function Models() {
   const oneProps = useGLTF("/One.glb");
   const mProps = useGLTF("/M.glb");
+
+  const spark = useRef();
 
   const groupM = useRef();
   const groupM2 = useRef();
@@ -81,17 +83,32 @@ function Models() {
       );
     });
 
+    const allGroups = [
+      {refer:groupOne, proper: oneProps},
+      {refer:groupOne2, proper: oneProps},
+      {refer:groupOne, proper: oneProps},
+      {refer:groupOne, proper: oneProps},
+    
+    ]
+
+
     groupOne.current.children.forEach((child, index) => {});
     groupOne2.current.children.forEach((child, index) => {});
 
     groupM.current.children.forEach((child, index) => {
-      // const defaultPosition = [
-      //   modularProps[child.name].position[0] * (1 + offset * modularProps[child.name].move[0]),
-      //   modularProps[child.name].position[1] * (1 + offset * modularProps[child.name].move[1]),
-      //   modularProps[child.name].position[2] * (1 + offset * modularProps[child.name].move[2]),
-      // ]
+      const defaultPosition = [
+        modularProps[child.name].position[0] *
+          Math.abs(Math.cos((Math.PI) * offset)) *
+          (1 + offset * modularProps[child.name].move[0]),
+        modularProps[child.name].position[1] *
+          Math.abs(Math.cos((Math.PI) * offset)) *
+          (1 + offset * modularProps[child.name].move[1]),
+        modularProps[child.name].position[2] *
+          Math.abs(Math.cos((Math.PI) * offset)) *
+          (1 + offset * modularProps[child.name].move[2]),
+      ];
 
-      // child.position.set(...defaultPosition);
+      child.position.set(...defaultPosition);
     });
 
     groupM2.current.children.forEach((child, index) => {});
@@ -110,6 +127,8 @@ function Models() {
 
   return (
     <group>
+      
+
       <M mProps={mProps} groupM={groupM} modularProps={modularProps} />
       <M mProps={mProps} groupM={groupM2} modularProps={modularProps2} />
 
