@@ -26,14 +26,16 @@ import {
   } from 'react-icons/md';
   import { BsGithub, BsDiscord, BsPerson } from 'react-icons/bs';
   
-  export default function contact() {
+  export default function Contact() {
     return (
       <Container minHeight={"1020px"} maxW="full" mt={0} centerContent overflow="hidden">
         <Flex justifyContent={"center"}>
           <Box
-            bg="#02054B"
+            bg="dark2"
             color="white"
             borderRadius="lg"
+            // borderWidth={"2px"}
+            borderColor="primary.100"
             m={{ sm: 4, md: 16, lg: 10 }}
             p={{ sm: 5, md: 5, lg: 16 }}>
             <Box p={4}>
@@ -52,8 +54,9 @@ import {
                           width="200px"
                           variant="ghost"
                           color="#DCE2FF"
-                          _hover={{ border: '2px solid #1C6FEB' }}
-                          leftIcon={<MdPhone color="#1970F1" size="20px" />}>
+                          _hover={{ borderWidth: '2px' }}
+                          borderColor={"primary.100"}
+                          leftIcon={<MdPhone color={"#f7d147"} size="20px" />}>
                           +91-988888888
                         </Button>
                         <Button
@@ -62,8 +65,8 @@ import {
                           width="200px"
                           variant="ghost"
                           color="#DCE2FF"
-                          _hover={{ border: '2px solid #1C6FEB' }}
-                          leftIcon={<MdEmail color="#1970F1" size="20px" />}>
+                          _hover={{ border: '2px solid #f7d147' }}
+                          leftIcon={<MdEmail color="#f7d147" size="20px" />}>
                           hello@abc.com
                         </Button>
                         <Button
@@ -72,8 +75,8 @@ import {
                           width="200px"
                           variant="ghost"
                           color="#DCE2FF"
-                          _hover={{ border: '2px solid #1C6FEB' }}
-                          leftIcon={<MdLocationOn color="#1970F1" size="20px" />}>
+                          _hover={{ border: '2px solid #f7d147' }}
+                          leftIcon={<MdLocationOn color="#f7d147" size="20px" />}>
                           Karnavati, India
                         </Button>
                       </VStack>
@@ -111,47 +114,50 @@ import {
                   </Box>
                 </WrapItem>
                 <WrapItem>
-                  <Box bg="white" borderRadius="lg">
-                    <Box m={8} color="#0B0E3F">
+                  <Box borderWidth={"2px"} borderColor="primary.100" borderRadius="lg">
+                    <Box m={8}>
                       <VStack spacing={5}>
                         <FormControl id="name">
-                          <FormLabel>Your Name</FormLabel>
-                          <InputGroup borderColor="#E0E1E7">
+                          <FormLabel color={"primary.100"}>Your Name</FormLabel>
+                          <InputGroup borderColor="dark2">
                             <InputLeftElement
                               pointerEvents="none"
                               
-                            ><BsPerson color="gray.800" /></InputLeftElement>
+                            ><BsPerson /></InputLeftElement>
                             <Input type="text" size="md" />
                           </InputGroup>
                         </FormControl>
                         <FormControl id="name">
-                          <FormLabel>Mail</FormLabel>
-                          <InputGroup borderColor="#E0E1E7">
+                          <FormLabel color={"primary.100"}>Mail</FormLabel>
+                          <InputGroup color="primary.100"  borderColor="primary.100">
                             <InputLeftElement
                               pointerEvents="none"
                               
                             >
-                              <MdOutlineEmail color="gray.800" />
+                              <MdOutlineEmail />
                             </InputLeftElement>
-                            <Input type="text" size="md" />
+                            <Input color={"primary.100"} type="text" size="md" />
                           </InputGroup>
                         </FormControl>
                         <FormControl id="name">
-                          <FormLabel>Message</FormLabel>
+                          <FormLabel color={"primary.100"}>Message</FormLabel>
                           <Textarea
-                            borderColor="gray.300"
+                            borderColor="dark2"
                             _hover={{
-                              borderRadius: 'gray.300',
+                              borderRadius: 'dark2',
                             }}
                             placeholder="message"
                           />
                         </FormControl>
                         <FormControl id="name" float="right">
                           <Button
-                            variant="solid"
-                            bg="#0D74FF"
-                            color="white"
-                            _hover={{}}>
+                            variant="outline"
+                            borderColor={"primary.100"}
+                            color="primary.100"
+                            _hover={{
+                              bg:"primary.100",
+                              color:"dark2"
+                            }}>
                             Send Message
                           </Button>
                         </FormControl>

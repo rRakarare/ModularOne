@@ -12,6 +12,7 @@ export const styles = {
 export const colors = {
   primary: {
     100: "#f7d147",
+    200: "#FCC80B",
   },
   one: {
     100: '#f7d147',
@@ -34,6 +35,14 @@ export const colors = {
   dark2: "#1e1e2b"
 };
 
-const customTheme = extendTheme({ styles, colors });
+const breakpoints = {
+  sm: '320px',
+  md: '768px',
+  lg: '960px',
+  xl: '1200px',
+  '2xl': '1751px',
+}
+
+const customTheme = extendTheme({ styles, colors, breakpoints });
 
 export default customTheme;

@@ -26,6 +26,7 @@ const SingleLeistung = ({
   currentSlide,
   changeSlide,
   color,
+  myRef,
 }) => {
   const boxVariant = {
     visibleMob: {
@@ -109,7 +110,7 @@ const SingleLeistung = ({
     }
   }, [currentSlide, mediaquery]);
   useEffect(() => {
-    colorized ? control.start("colorized") : control.start("decolorized")
+    colorized ? control.start("colorized") : control.start("decolorized");
   }, [colorized]);
 
   return (
@@ -131,10 +132,10 @@ const SingleLeistung = ({
             "2xl": "14rem",
           }}
         >
-          <VStack align={"flex-start"}>
+          <VStack ref={Number === 1 ? myRef : null} align={"flex-start"}>
             <SingleText>
               <Text fontWeight={"medium"} fontSize={"large"}>
-                Für | {FOR}
+                {FOR}
               </Text>
             </SingleText>
             <SingleText>
@@ -142,7 +143,14 @@ const SingleLeistung = ({
                 marginBottom={"1rem"}
                 color={color[100]}
                 fontWeight={"bold"}
-                fontSize={"7xl"}
+                fontSize={{
+                  base: "3xl",
+                  md: "4xl",
+                  lg: "4xl",
+                  xl: "5xl",
+                  "2xl": "7xl",
+  
+                }}
               >
                 {HEAD}
               </Heading>
@@ -154,12 +162,12 @@ const SingleLeistung = ({
                 fontWeight={"medium"}
                 fontSize={"2xl"}
               >
-                Für | {DESC}
+                {DESC}
               </Text>
             </SingleText>
             <SingleText>
               <Text fontWeight={"medium"} fontSize={"md"}>
-                Für | {TEXT}
+                {TEXT}
               </Text>
             </SingleText>
           </VStack>
@@ -171,6 +179,10 @@ const SingleLeistung = ({
           alignItems={"center"}
         >
           <Box
+            display={{
+              base: "none",
+              md: "block",
+            }}
             as={motion.div}
             variants={boxVariant}
             initial="hidden"
@@ -187,7 +199,6 @@ const SingleLeistung = ({
               variants={colorize}
               animate={control}
               initial={"decolorized"}
-              
               background={color[100]}
               w={"100%"}
               h={"100%"}
@@ -204,11 +215,11 @@ const SingleLeistung = ({
             variants={inVariant}
             initial="hidden"
             animate={control}
-            top={{ base: "auto", md: "calc(50vh - 200px)" }}
-            right={{ base: "auto", md: "calc(25vw - 200px)" }}
+            top={{ base: "auto", md: "calc(50vh - 125px)", lg: "calc(50vh - 200px)" }}
+            right={{ base: "auto", md: "calc(25vw - 125px)", lg: "calc(25vw - 200px)" }}
             position={{ base: "static", md: "fixed" }}
-            w={{ base: "200px", md: "400px" }}
-            h={{ base: "200px", md: "400px" }}
+            w={{ base: "200px", md: "250px", lg: "400px" }}
+            h={{ base: "200px", md: "250px", lg: "400px" }}
           >
             <Image
               src={`/${IMG_IN}.jpg`}

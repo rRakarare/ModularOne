@@ -10,7 +10,7 @@ function Models() {
   const oneProps = useGLTF("/One.glb");
   const mProps = useGLTF("/M.glb");
 
-  const spark = useRef();
+  const parentRef = useRef();
 
   const groupM = useRef();
   const groupM2 = useRef();
@@ -84,34 +84,74 @@ function Models() {
     });
 
     const allGroups = [
-      {refer:groupOne, proper: oneProps},
-      {refer:groupOne2, proper: oneProps},
-      {refer:groupOne, proper: oneProps},
-      {refer:groupOne, proper: oneProps},
-    
-    ]
+      { refer: groupOne, proper: oneProps },
+      { refer: groupOne2, proper: oneProps },
+      { refer: groupOne, proper: oneProps },
+      { refer: groupOne, proper: oneProps },
+    ];
 
+    parentRef.current.rotation.set(0, offset * 2 * Math.PI, 0);
+    parentRef.current.position.set(0, 0, -offset * 2);
 
     groupOne.current.children.forEach((child, index) => {});
     groupOne2.current.children.forEach((child, index) => {});
 
     groupM.current.children.forEach((child, index) => {
+      child.scale.set(
+        Math.abs(Math.cos(Math.PI * offset)),
+        Math.abs(Math.cos(Math.PI * offset)),
+        Math.abs(Math.cos(Math.PI * offset))
+      );
+
       const defaultPosition = [
         modularProps[child.name].position[0] *
-          Math.abs(Math.cos((Math.PI) * offset)) *
+          Math.abs(Math.cos(Math.PI * offset)) *
           (1 + offset * modularProps[child.name].move[0]),
         modularProps[child.name].position[1] *
-          Math.abs(Math.cos((Math.PI) * offset)) *
+          Math.abs(Math.cos(Math.PI * offset)) *
           (1 + offset * modularProps[child.name].move[1]),
         modularProps[child.name].position[2] *
-          Math.abs(Math.cos((Math.PI) * offset)) *
+          Math.abs(Math.cos(Math.PI * offset)) *
           (1 + offset * modularProps[child.name].move[2]),
       ];
 
       child.position.set(...defaultPosition);
     });
 
-    groupM2.current.children.forEach((child, index) => {});
+    groupM2.current.children.forEach((child, index) => {
+
+      child.rotation.set(
+        Math.cos(elapsed / 10000)*offset,
+        Math.cos(elapsed / 10000)*offset,
+        0
+      )
+
+      child.position.set(
+        Math.cos(elapsed / 1000)*offset*100,
+        Math.cos(elapsed / 1000)*offset*100,
+        0
+      )
+
+      child.scale.set(
+        Math.cos(Math.PI * offset),
+        Math.cos(Math.PI * offset),
+        Math.cos(Math.PI * offset)
+      );
+
+      const defaultPosition = [
+        modularProps2[child.name].position[0] *
+          Math.abs(Math.cos(Math.PI * offset)) * 
+          (1 + offset * modularProps2[child.name].move[0]),
+        modularProps2[child.name].position[1] *
+          Math.abs(Math.cos(Math.PI * offset)) *
+          (1 + offset * modularProps2[child.name].move[1]),
+        modularProps2[child.name].position[2] *
+          Math.abs(Math.cos(Math.PI * offset)) *
+          (1 + offset * modularProps2[child.name].move[2]),
+      ];
+
+      child.position.set(...defaultPosition);
+    });
 
     previousTimeStamp = time;
     myreq = requestAnimationFrame(raf);
@@ -126,9 +166,7 @@ function Models() {
   }, []);
 
   return (
-    <group>
-      
-
+    <group ref={parentRef}>
       <M mProps={mProps} groupM={groupM} modularProps={modularProps} />
       <M mProps={mProps} groupM={groupM2} modularProps={modularProps2} />
 

@@ -6,6 +6,7 @@ import { useRouter } from "next/router";
 import { useContainerDimensions } from "../../lib/refDimensions";
 import {Anker, AnkerMob, Dot} from "./styles"
 import DarkModeCheck from "../DarkModeCheck";
+import { MobileNav } from "./MobileNav";
 
 const links = [
   { text: "Modular One", href: "/" },
@@ -152,6 +153,7 @@ export default function Navbar() {
 
   return (
     <>
+    
       <Box
         position={"absolute"}
         top={"70px"}
@@ -181,7 +183,8 @@ export default function Navbar() {
         px={{ base: "5", md: "40" }}
       >
         <Flex h={16} alignItems={"center"} justifyContent={"space-between"}>
-          <BurgerButton isOpen={isOpen} onClick={() => setIsOpen(!isOpen)} />
+          {/* <BurgerButton isOpen={isOpen} onClick={() => setIsOpen(!isOpen)} /> */}
+          <MobileNav />
           <HStack spacing={8} alignItems={"center"}>
             <Box style={{ cursor: "pointer" }}>
               <NextLink legacyBehavior href={"/"}>

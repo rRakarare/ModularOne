@@ -19,9 +19,6 @@ import One from "./Models/One";
 import * as THREE from "three";
 
 function Scene() {
-
-
-
   return (
     <Canvas camera={{ fov: 75, near: 0.1, far: 1000, position: [0, 0, 3] }}>
       <ambientLight intensity={0.3} />
@@ -42,11 +39,7 @@ function Scene() {
         far={1.9}
       />
 
-      
-      <Float speed={2} rotationIntensity={1}>
-        <Models />
-      </Float>
-      
+      <Models />
     </Canvas>
   );
 }
