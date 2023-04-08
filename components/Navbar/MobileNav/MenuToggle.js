@@ -13,7 +13,8 @@ const Path = (props) => (
 );
 
 export const MenuToggle = ({ toggle }) => (
-  <ChakraBox bg={"red"} position={"absolute"} top={"18px"} cursor={"pointer"} onClick={toggle}>
+  <ChakraBox bg={"red"} width={"100%"} height={"100%"} cursor={"pointer"} onClick={toggle}>
+    <ChakraBox  width={"100%"} height={"100%"}>
     
       <svg width="23" height="23" viewBox="0 0 23 23">
         <Path
@@ -37,6 +38,8 @@ export const MenuToggle = ({ toggle }) => (
           }}
         />
       </svg>
+
+      </ChakraBox>
     
   </ChakraBox>
 );

@@ -49,7 +49,9 @@ export const Anker = styled.a`
 `;
 
 export const AnkerMob = styled.a`
-  color: #c2c2c2;
+  color: ${(props) => {
+    props.textcolor;
+  }};
   text-decoration: none;
   font-size: 1.2em;
   text-transform: uppercase;

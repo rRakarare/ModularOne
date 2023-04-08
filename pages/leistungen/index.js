@@ -126,11 +126,11 @@ const Leistungen = () => {
             "Digitale Gebäudemodelle sind präzise, flexibel und effizient. Sie ermöglichen eine detaillierte dreidimensionale Darstellung des Gebäudes, die schnell und einfach angepasst werden kann. Dadurch können Fehler und Probleme frühzeitig erkannt und behoben werden, was zu sichereren und effizienteren Bauvorhaben führt."
           }
           Number={1}
-          IMG="test"
-          IMG_IN="in"
+          IMG="leistungenImages/test"
+          IMG_IN="leistungenImages/in"
           currentSlide={currentSlide}
           changeSlide={changeSlide}
-          color={theme.colors.one}
+          color={theme.colors.three}
         />
         <SingleLeistung
           FOR={"ASSET MANAGEMENT"}
@@ -142,11 +142,11 @@ const Leistungen = () => {
             "ESG Zertifikate der DGNB für Gebäude im Bestand steigern den Wert Ihrer Immobilie, verbessern Ihr Image und sind ein Zeichen für Nachhaltigkeit. Die gründliche und objektive Bewertung zeigt Ihnen Stärken und Schwächen Ihrer Immobilie auf und gibt Ihnen die Möglichkeit, gezielte Maßnahmen zur Optimierung zu ergreifen. Investieren Sie in die Zukunft Ihrer Immobilien und lassen Sie sie durch die DGNB zertifizieren."
           }
           Number={2}
-          IMG="test2"
-          IMG_IN="in2"
+          IMG="leistungenImages/test2"
+          IMG_IN="leistungenImages/in2"
           currentSlide={currentSlide}
           changeSlide={changeSlide}
-          color={theme.colors.two}
+          color={theme.colors.four}
         />
         <SingleLeistung
           FOR={"QUICK START"}
@@ -158,8 +158,8 @@ const Leistungen = () => {
             "Der ESG Pre-Check bietet Ihnen einen schnellen und kosteneffektiven Weg, um den Nachhaltigkeitsstatus Ihrer Immobilie zu überprüfen und eine erste Einschätzung zu erhalten. Sie können gezielte Maßnahmen zur Verbesserung ergreifen und so den Wert und die Nachhaltigkeit Ihrer Immobilie steigern. Nutzen Sie den ESG Pre-Check, um sich von Mitbewerbern abzuheben und in eine nachhaltige Zukunft zu investieren."
           }
           Number={3}
-          IMG="test3"
-          IMG_IN="in3"
+          IMG="leistungenImages/test3"
+          IMG_IN="leistungenImages/in3"
           currentSlide={currentSlide}
           changeSlide={changeSlide}
           color={theme.colors.three}
@@ -174,11 +174,11 @@ const Leistungen = () => {
             "Unser 2D-Planerstellungs-Service auf Basis von Lidar-Scans ermöglicht es uns, hochpräzise und detaillierte Pläne Ihrer Gebäude zu erstellen. Der Scan mit unserem Lidar-Scanner erfasst die Gebäudegeometrie punktgenau und generiert ein 3D-Modell, aus dem wir Ihre präzisen 2D-Pläne erstellen. Vermeiden Sie Fehler und erhalten Sie genaue Grundlagen für Planungen, Renovierungen und Bestandsdokumentationen mit unserem Lidar-Scan-Service."
           }
           Number={4}
-          IMG="test4"
-          IMG_IN="in4"
+          IMG="leistungenImages/test4"
+          IMG_IN="leistungenImages/in4"
           currentSlide={currentSlide}
           changeSlide={changeSlide}
-          color={theme.colors.four}
+          color={theme.colors.two}
         />
       </VStack>
     </>

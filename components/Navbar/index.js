@@ -1,10 +1,18 @@
 import { useEffect, useRef, useState } from "react";
-import { Box, Flex, HStack, VStack, Center, useColorMode } from "@chakra-ui/react";
+import {
+  Box,
+  Flex,
+  HStack,
+  VStack,
+  Center,
+  useColorMode,
+  useColorModeValue,
+} from "@chakra-ui/react";
 import { motion } from "framer-motion";
 import NextLink from "next/link";
 import { useRouter } from "next/router";
 import { useContainerDimensions } from "../../lib/refDimensions";
-import {Anker, AnkerMob, Dot} from "./styles"
+import { Anker, AnkerMob, Dot } from "./styles";
 import DarkModeCheck from "../DarkModeCheck";
 import { MobileNav } from "./MobileNav";
 
@@ -12,21 +20,31 @@ const links = [
   { text: "Modular One", href: "/" },
   { text: "Leistungen", href: "/leistungen" },
   { text: "Blog", href: "/blog" },
-  { text: "Preise", href: "/preise" },
   { text: "Kontakt", href: "/kontakt" },
 ];
 
-
-
-const MobLinks = ({ router }) => {
+const MobLinks = ({ router, setIsOpen }) => {
   const path = router && router.asPath;
+  const texte = useColorModeValue("gray.100", "dark2")
+
+  const variants = {
+    open: {
+      transition: { staggerChildren: 0.07, delayChildren: 0.2 },
+    },
+    closed: {
+      transition: { staggerChildren: 0.05, staggerDirection: -1 },
+    },
+  };
+
   return (
     <>
       {links.map((link) => (
-        <NextLink legacyBehavior href={link.href} key={link.text}>
+        <NextLink  legacyBehavior href={link.href} key={link.text}>
           <AnkerMob
+            onClick={()=>setIsOpen(false)}
             className={path == link.href ? "active" : ""}
             key={link.text}
+            textcolor={texte}
           >
             {link.text}
           </AnkerMob>
@@ -38,7 +56,8 @@ const MobLinks = ({ router }) => {
 
 const Links = ({ items, router }) => {
   const path = router && router.asPath;
-  const { colorMode, toggleColorMode } = useColorMode()
+  const { colorMode, toggleColorMode } = useColorMode();
+  const texte = useColorModeValue("gray.100", "dark2")
 
   return (
     <>
@@ -49,7 +68,7 @@ const Links = ({ items, router }) => {
             rotes={i + 1}
             widthParam={items.length > 0 && items[i]}
             key={link.text}
-            textcolor = {colorMode === "light" ? "black": "white"}
+            textcolor={texte}
           >
             {link.text}
           </Anker>
@@ -73,44 +92,50 @@ const MotionButton = motion(Box);
 
 const BurgerButton = ({ isOpen, onClick }) => {
   return (
-    <MotionButton
-      _hover={{
-        cursor: "pointer",
-      }}
-      className="menu-button"
-      onClick={onClick}
-      animate={isOpen ? "open" : "closed"}
-      initial={false}
-      display={{ base: "block", md: "none" }}
-    >
-      <svg
-        width="23"
-        height="23"
-        style={{ margin: "4px 0 0 2px" }}
-        viewBox="0 0 23 23"
-      >
-        <Path
-          variants={{
-            closed: { d: "M 2 2.5 L 20 2.5" },
-            open: { d: "M 3 16.5 L 17 2.5" },
+    <>
+      <Box display={{ base: "block", md: "none" }} zIndex={220} height={"23px"}>
+        <MotionButton
+          position={isOpen ? "fixed" : "absolute"}
+          
+          _hover={{
+            cursor: "pointer",
           }}
-        />
-        <Path
-          d="M 2 9.423 L 20 9.423"
-          variants={{
-            closed: { opacity: 1 },
-            open: { opacity: 0 },
-          }}
-          transition={{ duration: 0.1 }}
-        />
-        <Path
-          variants={{
-            closed: { d: "M 2 16.346 L 20 16.346" },
-            open: { d: "M 3 2.5 L 17 16.346" },
-          }}
-        />
-      </svg>
-    </MotionButton>
+          className="menu-button"
+          onClick={onClick}
+          animate={isOpen ? "open" : "closed"}
+          initial={false}
+          
+        >
+          <svg
+            width="23"
+            height="23"
+            style={{ margin: "4px 0 0 2px" }}
+            viewBox="0 0 23 23"
+          >
+            <Path
+              variants={{
+                closed: { d: "M 2 2.5 L 20 2.5" },
+                open: { d: "M 3 16.5 L 17 2.5" },
+              }}
+            />
+            <Path
+              d="M 2 9.423 L 20 9.423"
+              variants={{
+                closed: { opacity: 1 },
+                open: { opacity: 0 },
+              }}
+              transition={{ duration: 0.1 }}
+            />
+            <Path
+              variants={{
+                closed: { d: "M 2 16.346 L 20 16.346" },
+                open: { d: "M 3 2.5 L 17 16.346" },
+              }}
+            />
+          </svg>
+        </MotionButton>
+      </Box>
+    </>
   );
 };
 
@@ -118,15 +143,14 @@ const MotionCenter = motion(Center);
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
-  const { colorMode, toggleColorMode } = useColorMode()
+  const { colorMode, toggleColorMode } = useColorMode();
 
+  const bgs = useColorModeValue("gray.100", "dark2")
 
   const router = useRouter();
 
   const ref = useRef();
-  const dimensions = useContainerDimensions(ref)
-
-
+  const dimensions = useContainerDimensions(ref);
 
   const slideVerticalAnimation = {
     open: {
@@ -155,36 +179,44 @@ export default function Navbar() {
     <>
     
       <Box
-        position={"absolute"}
-        top={"70px"}
+        position={"fixed"}
+        zIndex={200}
+        top={0}
+        left={0}
         display={{
           base: "block",
           md: "none",
         }}
-        width={"100%"}
+        width={"100vw"}
       >
         <MotionCenter
-          zIndex={10}
+          width={"100vw"}
+          height={"100vh"}
           position="relative"
           initial="close"
           animate={isOpen ? "open" : "close"}
           variants={slideVerticalAnimation}
-          mx={["2rem", "5rem"]}
-          border={"3px solid black"}
-          bg={"dark"}
+          bg={bgs}
         >
-          <VStack as={"nav"}>
-            <MobLinks router={router} />
+          <VStack
+            height={"100%"}
+            alignItems={"center"}
+            justifyContent={"center"}
+            as={"nav"}
+          >
+            <MobLinks router={router} setIsOpen={setIsOpen} />
           </VStack>
         </MotionCenter>
       </Box>
       <Box
-        style={{ zIndex: 10, position: "relative" }}
+        position={"relative"}
+        width={"100%"}
+        
         px={{ base: "5", md: "40" }}
       >
         <Flex h={16} alignItems={"center"} justifyContent={"space-between"}>
-          {/* <BurgerButton isOpen={isOpen} onClick={() => setIsOpen(!isOpen)} /> */}
-          <MobileNav />
+          <BurgerButton isOpen={isOpen} onClick={() => setIsOpen(!isOpen)} />
+          {/* <MobileNav /> */}
           <HStack spacing={8} alignItems={"center"}>
             <Box style={{ cursor: "pointer" }}>
               <NextLink legacyBehavior href={"/"}>
@@ -220,7 +252,7 @@ export default function Navbar() {
               <Links router={router} items={dimensions} />
               <Dot dims={15}></Dot>
             </HStack>
-            <DarkModeCheck/>
+            <DarkModeCheck />
           </HStack>
         </Flex>
       </Box>

@@ -26,7 +26,8 @@ export default function Articel_Card({ thumbnail, post, index }) {
           <Box
             role={"group"}
             maxW={"445px"}
-            minW={"350px"}
+            w={"350px"}
+            minH={"420px"}
             bg={useColorModeValue("white", "gray.900")}
             boxShadow={"lg"}
             rounded={"md"}

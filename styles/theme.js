@@ -23,7 +23,7 @@ export const colors = {
     50: "#f75b4778",
   },
   three: {
-    100: '#6747f7',
+    100: '#087BCB',
     50: '#6747f77a',
   },
   four: {

@@ -8,7 +8,7 @@ const Counter = ({currentSlide}) => {
 
     return <>
     <Box
-        zIndex={"popover"}
+        zIndex={100}
         position={"sticky"}
         left={{base:'auto','2xl':'70px'}}
         top={{base:'20px','2xl':'100px'}}

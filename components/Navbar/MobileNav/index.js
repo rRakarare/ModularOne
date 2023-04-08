@@ -9,8 +9,6 @@ import { useDisclosure } from "@chakra-ui/react";
 import { Container, chakra, shouldForwardProp } from "@chakra-ui/react";
 import { ChakraBox, ChakraNav } from "../chakraFramer";
 
-
-
 const sidebar = {
   open: (height = 1000) => ({
     clipPath: `circle(${height * 2 + 200}px at 40px 40px)`,
@@ -21,7 +19,7 @@ const sidebar = {
     },
   }),
   closed: {
-    clipPath: "circle(30px at 40px 40px)",
+    clipPath: "circle(0px at 30px 30px)",
     transition: {
       delay: 0.5,
       type: "spring",
@@ -41,36 +39,32 @@ export const MobileNav = () => {
     console.log(isOpen);
   }, [isOpen]);
 
-  
   return (
-    <ChakraBox display={{ base: "block", md: "none" }}>
+    <><MenuToggle toggle={onToggle} />
+    <ChakraBox position={"relative"}  display={{ base: "block", md: "none" }}>
+      
       <ChakraNav
-      style={{
-        position: "absolute",
-        top: 0,
-        left: 0,
-        bottom: 0,
-        width: "100vw",
-        height: "100vh"
+        position={"fixed"}
+        initial={false}
+        animate={isOpen ? "open" : "closed"}
+        custom={height}
+        ref={containerRef}
+      >
+        <ChakraBox
+          
+          background={"white"}
+          top={0}
+          left={0}
+          bottom={0}
+          width={"100vw"}
+          height={"100vh"}
+          variants={sidebar}
+        />
+        <Navigation />
         
-      }}
-      initial={false}
-      animate={isOpen ? "open" : "closed"}
-      custom={height}
-      ref={containerRef}
-    >
-      <ChakraBox
-        position={"absolute"}
-        background={"white"}
-        top={0}
-        left={0}
-        bottom={0}
-        width={"100vw"}
-        variants={sidebar}
-      />
-      <Navigation />
-      <MenuToggle toggle={onToggle} />
-    </ChakraNav>
+      </ChakraNav>
+      
     </ChakraBox>
+    </>
   );
 };

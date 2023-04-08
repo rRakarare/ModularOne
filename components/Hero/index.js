@@ -14,24 +14,23 @@ import {
 import { motion } from "framer-motion";
 
 export default function CallToActionWithAnnotation() {
+  const colorus = useColorModeValue("#1e1e2b", "white");
+
   const icon = {
     hidden: {
-      opacity: .5,
+      opacity: 0.01,
       pathLength: 0,
-      fill: "#ffffff"
-
+      fill: "#ffffff14",
     },
     visibleM: {
       opacity: 1,
       pathLength: 1,
-      fill: "#263238"
-
+      fill: colorus,
     },
     visible1: {
       opacity: 1,
       pathLength: 1,
-      fill: "#f7d147"
-
+      fill: "#f7d147",
     },
   };
 
@@ -51,40 +50,36 @@ export default function CallToActionWithAnnotation() {
           >
             Neuigkeiten <br />
             <Center>
-            <motion.svg
-              width={300}
-              height={300}
-              viewBox="0 0 122 122"
-            >
-              <motion.path style={{stroke:"#263238", strokeWidth:"2"}}
-                stroke={"#119e2400"}
-                strokeWidth={"20"}
-                id="Vector"
-                d="M60.4993 47.7395L85.6897 22.5394H98.4597V32.8693H89.9697L60.4993 62.3396L32.8591 34.6993V98.4604H22.539V22.5405H35.309L60.4993 47.7395Z"
-
-                variants={icon}
-                initial="hidden"
-                animate="visibleM"
-                fill="#263238"
-                transition={{
-                  default: { duration: 1.8, ease: "easeInOut" },
-                  fill: { duration: 2, ease: [1, 0, 0.8, 1] }
-                }}
-              />
-              <motion.path style={{stroke:"#f7d147", strokeWidth:"2"}}
-                id="Vector_2"
-                d="M88.4302 41.6696L79.67 50.4298V56.5697H88.14V98.4585H98.46V41.6669L88.4302 41.6696Z"
-                variants={icon}
-                fill="#f7d147"
-                initial="hidden"
-                animate="visible1"
-                transition={{
-                  default: { duration: 1.8, ease: "easeInOut" },
-                  fill: { duration: 2, ease: [1, 0, 0.8, 1] }
- 
-                }}
-              />
-            </motion.svg>
+              <motion.svg width={300} height={300} viewBox="0 0 122 122">
+                <motion.path
+                  style={{ stroke: colorus, strokeWidth: "2" }}
+                  stroke={colorus}
+                  strokeWidth={"20"}
+                  id="Vector"
+                  d="M60.4993 47.7395L85.6897 22.5394H98.4597V32.8693H89.9697L60.4993 62.3396L32.8591 34.6993V98.4604H22.539V22.5405H35.309L60.4993 47.7395Z"
+                  variants={icon}
+                  initial="hidden"
+                  animate="visibleM"
+                  fill={colorus}
+                  transition={{
+                    default: { duration: 1.8, ease: "easeInOut" },
+                    fill: { duration: 2, ease: [1, 0, 0.8, 1] },
+                  }}
+                />
+                <motion.path
+                  style={{ stroke: "#f7d147", strokeWidth: "2" }}
+                  id="Vector_2"
+                  d="M88.4302 41.6696L79.67 50.4298V56.5697H88.14V98.4585H98.46V41.6669L88.4302 41.6696Z"
+                  variants={icon}
+                  fill="#f7d147"
+                  initial="hidden"
+                  animate="visible1"
+                  transition={{
+                    default: { duration: 1.8, ease: "easeInOut" },
+                    fill: { duration: 2, ease: [1, 0, 0.8, 1] },
+                  }}
+                />
+              </motion.svg>
             </Center>
           </Heading>
           <Text color={"gray.500"}>
