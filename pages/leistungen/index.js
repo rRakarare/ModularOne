@@ -162,7 +162,7 @@ const Leistungen = () => {
           IMG_IN="leistungenImages/in3"
           currentSlide={currentSlide}
           changeSlide={changeSlide}
-          color={theme.colors.three}
+          color={theme.colors.one}
         />
         <SingleLeistung
           FOR={"PRÄZISSION"}

@@ -1,7 +1,7 @@
 import { Sparkles, useAnimations, useGLTF } from "@react-three/drei";
 import { useLenis } from "@studio-freight/react-lenis";
 import React, { useEffect, useRef } from "react";
-import { getModularProps, mAnimations, oneAnimation } from "./helpers";
+import { getModularProps, getOneProps, mAnimations, oneAnimation } from "./helpers";
 import * as THREE from "three";
 import M from "./M";
 import One from "./One";
@@ -9,6 +9,8 @@ import One from "./One";
 function Models() {
   const oneProps = useGLTF("/One.glb");
   const mProps = useGLTF("/M.glb");
+
+  console.log(mProps)
 
   const parentRef = useRef();
 
@@ -23,11 +25,14 @@ function Models() {
 
   const modularProps = getModularProps(0.11);
   const modularProps2 = getModularProps(-0.11);
+  const einsProps = getOneProps(0.11);
+  const einsProps2 = getOneProps(-0.11);
   const modularKeys = Object.keys(modularProps);
+  const oneKeys = Object.keys(einsProps);
 
   useEffect(() => {
-    oneAnimation.forEach((item) => {
-      const action = oneActions[item.animation];
+    oneKeys.forEach((key) => {
+      const action = oneActions[einsProps[key].animation];
       action.play().paused = true;
     });
   }, [oneActions]);
@@ -39,7 +44,9 @@ function Models() {
     });
   }, [mActions]);
 
-  const lenis = useLenis((state) => {});
+  const lenis = useLenis((state) => {
+    console.log(state)
+  });
 
   let start, previousTimeStamp;
   let previousOffset = 0;
@@ -73,30 +80,35 @@ function Models() {
       );
     });
 
-    modularKeys.forEach((key) => {
-      const action = mActions[modularProps[key].animation];
+    // modularKeys.forEach((key) => {
+    //   const action = mActions[modularProps[key].animation];
+    //   action.time = THREE.MathUtils.damp(
+    //     action.time,
+    //     action.getClip().duration * offset * 10,
+    //     100,
+    //     delta
+    //   );
+    // });
+
+
+
+    parentRef.current.rotation.set(0, offset * 2 * Math.PI, 0);
+    parentRef.current.position.set(0, 0, -offset * 2);
+
+
+
+    groupM.current.children.forEach((child, index) => {
+
+      const action = mActions[modularProps[child.name].animation];
+
       action.time = THREE.MathUtils.damp(
         action.time,
         action.getClip().duration * offset * 10,
         100,
         delta
       );
-    });
 
-    const allGroups = [
-      { refer: groupOne, proper: oneProps },
-      { refer: groupOne2, proper: oneProps },
-      { refer: groupOne, proper: oneProps },
-      { refer: groupOne, proper: oneProps },
-    ];
 
-    parentRef.current.rotation.set(0, offset * 2 * Math.PI, 0);
-    parentRef.current.position.set(0, 0, -offset * 2);
-
-    groupOne.current.children.forEach((child, index) => {});
-    groupOne2.current.children.forEach((child, index) => {});
-
-    groupM.current.children.forEach((child, index) => {
       child.scale.set(
         Math.abs(Math.cos(Math.PI * offset)),
         Math.abs(Math.cos(Math.PI * offset)),
@@ -118,40 +130,7 @@ function Models() {
       child.position.set(...defaultPosition);
     });
 
-    groupM2.current.children.forEach((child, index) => {
-
-      child.rotation.set(
-        Math.cos(elapsed / 10000)*offset,
-        Math.cos(elapsed / 10000)*offset,
-        0
-      )
-
-      child.position.set(
-        Math.cos(elapsed / 1000)*offset*100,
-        Math.cos(elapsed / 1000)*offset*100,
-        0
-      )
-
-      child.scale.set(
-        Math.cos(Math.PI * offset),
-        Math.cos(Math.PI * offset),
-        Math.cos(Math.PI * offset)
-      );
-
-      const defaultPosition = [
-        modularProps2[child.name].position[0] *
-          Math.abs(Math.cos(Math.PI * offset)) * 
-          (1 + offset * modularProps2[child.name].move[0]),
-        modularProps2[child.name].position[1] *
-          Math.abs(Math.cos(Math.PI * offset)) *
-          (1 + offset * modularProps2[child.name].move[1]),
-        modularProps2[child.name].position[2] *
-          Math.abs(Math.cos(Math.PI * offset)) *
-          (1 + offset * modularProps2[child.name].move[2]),
-      ];
-
-      child.position.set(...defaultPosition);
-    });
+    
 
     previousTimeStamp = time;
     myreq = requestAnimationFrame(raf);
@@ -170,8 +149,8 @@ function Models() {
       <M mProps={mProps} groupM={groupM} modularProps={modularProps} />
       <M mProps={mProps} groupM={groupM2} modularProps={modularProps2} />
 
-      <One oneProps={oneProps} groupOne={groupOne} position={[0, 0, -0.1]} />
-      <One oneProps={oneProps} groupOne={groupOne2} position={[0, 0, 0.1]} />
+      <One oneProps={oneProps} groupOne={groupOne} einsProps={einsProps}  />
+      <One oneProps={oneProps} groupOne={groupOne2} einsProps={einsProps2}  />
     </group>
   );
 }

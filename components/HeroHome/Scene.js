@@ -17,8 +17,18 @@ import M from "./Models/M";
 import Models from "./Models/Models";
 import One from "./Models/One";
 import * as THREE from "three";
+import { useAnimationFrame } from "./Models/animation";
+import MModel from "./Models/MModel";
 
 function Scene() {
+
+
+  // useAnimationFrame((deltaTime, lenis) => {
+  //   // Pass on a function to the setter of the state
+  //   // to make sure we always have the latest state
+  //   console.log(lenis.progress)
+  // })
+
   return (
     <Canvas camera={{ fov: 75, near: 0.1, far: 1000, position: [0, 0, 3] }}>
       <ambientLight intensity={0.3} />
@@ -39,11 +49,10 @@ function Scene() {
         far={1.9}
       />
 
-      <Models />
+      <MModel />
     </Canvas>
   );
 }
 
-// useGLTF.preload("/One.glb");
 
 export default Scene;

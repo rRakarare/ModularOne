@@ -1,9 +1,5 @@
 const genArray = () => {
-  return [
-    (Math.random()) * 5,
-    (Math.random()) * 1,
-    (Math.random()) * 1,
-  ];
+  return [Math.random() * 5, Math.random() * 1, Math.random() * 1];
 };
 
 export const getModularProps = (z) => ({
@@ -77,11 +73,41 @@ export const getModularProps = (z) => ({
     position: [0.85404348, 0.84076309, z],
     move: genArray(),
   },
+});
 
-
-
-  
-})
+export const getOneProps = (z) => ({
+  OneA1: {
+    animation: "oa1",
+    position: [0.83631039, -0.82889897, z],
+    move: genArray(),
+  },
+  OneA2: {
+    animation: "oa2",
+    position: [0.83631039, -0.54136932, z],
+    move: genArray(),
+  },
+  OneA3: {
+    animation: "oa3",
+    position: [0.83631039, -0.249859047, z],
+    move: genArray(),
+  },
+  OneA4: {
+    animation: "oa4",
+    position: [0.83631039, 0.02339572, z],
+    move: genArray(),
+  },
+  OneA5: {
+    animation: "oa5",
+    position: [0.81044978, 0.24635744, z],
+    move: genArray(),
+  },
+  OneA6: {
+    animation: "oa6",
+    position: [0.64090443, 0.28638911, z],
+    move: genArray(),
+  },
+ 
+});
 
 export const mAnimations = [
   {
@@ -139,10 +165,10 @@ export const mAnimations = [
   {
     animation: "ma14",
     move: genArray(),
-  }
+  },
 ];
 export const oneAnimation = [
-    {
+  {
     animation: "oa1",
     move: genArray(),
   },

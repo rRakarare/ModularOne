@@ -1,7 +1,7 @@
 import React, { useRef } from "react";
 import { useGLTF, useAnimations } from "@react-three/drei";
 
-function One({oneProps, groupOne, ...rest}) {
+function One({oneProps, groupOne, einsProps, ...rest}) {
 
 
   const {nodes, materials} = oneProps;
@@ -19,7 +19,7 @@ function One({oneProps, groupOne, ...rest}) {
           material={materials["SVGMat.001"]}
           morphTargetDictionary={nodes.OneA5.morphTargetDictionary}
           morphTargetInfluences={nodes.OneA5.morphTargetInfluences}
-          position={[0.81044978, 0.24635744, -0.10988896]}
+          position={einsProps['OneA5'].position}
         />
         <mesh
           name="OneA1"
@@ -29,7 +29,7 @@ function One({oneProps, groupOne, ...rest}) {
           material={materials["SVGMat.001"]}
           morphTargetDictionary={nodes.OneA1.morphTargetDictionary}
           morphTargetInfluences={nodes.OneA1.morphTargetInfluences}
-          position={[0.83631039, -0.82889897, -0.109889]}
+          position={einsProps['OneA1'].position}
         />
         <mesh
           name="OneA2"
@@ -39,7 +39,7 @@ function One({oneProps, groupOne, ...rest}) {
           material={materials["SVGMat.001"]}
           morphTargetDictionary={nodes.OneA2.morphTargetDictionary}
           morphTargetInfluences={nodes.OneA2.morphTargetInfluences}
-          position={[0.83631039, -0.54136932, -0.10988899]}
+          position={einsProps['OneA2'].position}
         />
         <mesh
           name="OneA3"
@@ -49,7 +49,7 @@ function One({oneProps, groupOne, ...rest}) {
           material={materials["SVGMat.001"]}
           morphTargetDictionary={nodes.OneA3.morphTargetDictionary}
           morphTargetInfluences={nodes.OneA3.morphTargetInfluences}
-          position={[0.83631039, -0.24985904, -0.10988897]}
+          position={einsProps['OneA3'].position}
         />
         <mesh
           name="OneA4"
@@ -59,7 +59,7 @@ function One({oneProps, groupOne, ...rest}) {
           material={materials["SVGMat.001"]}
           morphTargetDictionary={nodes.OneA4.morphTargetDictionary}
           morphTargetInfluences={nodes.OneA4.morphTargetInfluences}
-          position={[0.83631039, 0.02339572, -0.10988896]}
+          position={einsProps['OneA4'].position}
         />
         <mesh
           name="OneA6"
@@ -69,7 +69,7 @@ function One({oneProps, groupOne, ...rest}) {
           material={materials["SVGMat.001"]}
           morphTargetDictionary={nodes.OneA6.morphTargetDictionary}
           morphTargetInfluences={nodes.OneA6.morphTargetInfluences}
-          position={[0.64090443, 0.28638911, -0.10988895]}
+          position={einsProps['OneA6'].position}
         />
     </group>
   )
