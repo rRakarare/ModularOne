@@ -11,7 +11,7 @@ export const useAnimationFrame = (callback) => {
   const animate = (time) => {
     if (previousTimeRef.current != undefined) {
       const deltaTime = time - previousTimeRef.current;
-      callback(deltaTime, lenis);
+      callback(deltaTime, time , lenis);
     }
     previousTimeRef.current = time;
     requestRef.current = requestAnimationFrame(animate);

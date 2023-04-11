@@ -80,26 +80,29 @@ function MModel() {
   const props = useGLTF("/M.glb");
 
   const mCubeFront = useRef();
-
-
+  const mCubeBack = useRef();
 
   return (
-    <group ref={mCubeFront}>
-      {cubes.map((cube, id) => (
-        <MCube
-          animationClip={props.animations.find(item => item.name === cube.animation)}
-          animation={cube.animation}
-          key={id}
-          name={cube.name}
-          position={[...cube.position, 0.1]}
-          material={
-            new THREE.MeshPhongMaterial({ color: new THREE.Color("#10AF87") })
-          }
-          geometry={props.nodes[cube.name].geometry}
-          morphTargetDictionary={props.nodes[cube.name].morphTargetDictionary}
-          morphTargetInfluences={props.nodes[cube.name].morphTargetInfluences}
-        />
-      ))}
+    <group>
+      <group ref={mCubeFront}>
+        {cubes.map((cube, id) => (
+          <MCube
+            animationClip={props.animations.find(
+              (item) => item.name === cube.animation
+            )}
+            animation={cube.animation}
+            key={id}
+            name={cube.name}
+            position={cube.position}
+            material={
+              new THREE.MeshPhongMaterial({ color: new THREE.Color("#10AF87") })
+            }
+            geometry={props.nodes[cube.name].geometry}
+            morphTargetDictionary={props.nodes[cube.name].morphTargetDictionary}
+            morphTargetInfluences={props.nodes[cube.name].morphTargetInfluences}
+          />
+        ))}
+      </group>
     </group>
   );
 }
