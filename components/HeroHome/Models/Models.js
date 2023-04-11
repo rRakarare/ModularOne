@@ -23,6 +23,8 @@ function Models() {
   const { actions: oneActions } = useAnimations(oneProps.animations, groupOne);
   const { actions: mActions } = useAnimations(mProps.animations, groupM);
 
+  console.log(oneActions)
+
   const modularProps = getModularProps(0.11);
   const modularProps2 = getModularProps(-0.11);
   const einsProps = getOneProps(0.11);

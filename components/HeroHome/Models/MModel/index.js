@@ -1,6 +1,7 @@
-import { useGLTF } from "@react-three/drei";
-import React from "react";
+import { useAnimations, useGLTF } from "@react-three/drei";
+import React, { useEffect, useRef } from "react";
 import MCube from "./MCube";
+import * as THREE from "three";
 
 const cubes = [
   {
@@ -78,18 +79,29 @@ const cubes = [
 function MModel() {
   const props = useGLTF("/M.glb");
 
-  console.log(props)
+  const mCubeFront = useRef();
 
-  return cubes.map((cube, id) => (
-    <MCube
-      key={id}
-      name={cube.name}
-      position={[...cube.position,0.1]}
-      geometry={props.nodes[cube.name].geometry}
-      morphTargetDictionary={props.nodes[cube.name].morphTargetDictionary}
-      morphTargetInfluences={props.nodes[cube.name].morphTargetInfluences}
-    />
-  ));
+
+
+  return (
+    <group ref={mCubeFront}>
+      {cubes.map((cube, id) => (
+        <MCube
+          animationClip={props.animations.find(item => item.name === cube.animation)}
+          animation={cube.animation}
+          key={id}
+          name={cube.name}
+          position={[...cube.position, 0.1]}
+          material={
+            new THREE.MeshPhongMaterial({ color: new THREE.Color("#10AF87") })
+          }
+          geometry={props.nodes[cube.name].geometry}
+          morphTargetDictionary={props.nodes[cube.name].morphTargetDictionary}
+          morphTargetInfluences={props.nodes[cube.name].morphTargetInfluences}
+        />
+      ))}
+    </group>
+  );
 }
 
 export default MModel;

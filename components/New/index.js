@@ -20,9 +20,9 @@ function New() {
   return (
     <ReactLenis
       root
-      options={{
-        lerp: 0.05,
-      }}
+      // options={{
+      //   lerp: 1,
+      // }}
     >
       <HeroHome />
       <Box height={"100vh"} />
