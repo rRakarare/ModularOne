@@ -91,7 +91,7 @@ function MModel() {
             name={cube.name}
             position={[...cube.position, 0.1]}
             material={
-              new THREE.MeshPhongMaterial({ color: new THREE.Color("#10AF87") })
+              new THREE.MeshPhongMaterial({ color: new THREE.Color("#263238") })
             }
             geometry={props.nodes[cube.name].geometry}
             morphTargetDictionary={props.nodes[cube.name].morphTargetDictionary}
@@ -106,7 +106,7 @@ function MModel() {
             name={cube.name}
             position={[...cube.position, -0.1]}
             material={
-              new THREE.MeshPhongMaterial({ color: new THREE.Color("#10AF87") })
+              new THREE.MeshPhongMaterial({ color: new THREE.Color("#263238") })
             }
             geometry={props.nodes[cube.name].geometry}
             morphTargetDictionary={props.nodes[cube.name].morphTargetDictionary}

@@ -19,6 +19,7 @@ import One from "./Models/One";
 import * as THREE from "three";
 import { useAnimationFrame } from "./Models/animation";
 import MModel from "./Models/MModel";
+import OneModel from "./Models/OneModel";
 
 function Scene() {
 
@@ -50,6 +51,7 @@ function Scene() {
       />
 
       <MModel />
+      <OneModel />
     </Canvas>
   );
 }

@@ -3,7 +3,7 @@ import { useAnimationFrame } from "../animation";
 import { useAnimations } from "@react-three/drei";
 import * as THREE from "three";
 
-function MCube({
+function OneCube({
   name,
   material,
   geometry,
@@ -55,4 +55,4 @@ function MCube({
   );
 }
 
-export default MCube;
+export default OneCube;
