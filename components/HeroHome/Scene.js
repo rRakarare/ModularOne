@@ -12,11 +12,6 @@ import {
 import { Canvas } from "@react-three/fiber";
 import { useLenis } from "@studio-freight/react-lenis";
 import React, { Suspense } from "react";
-import Model from "./Model";
-import M from "./Models/M";
-import Models from "./Models/Models";
-import One from "./Models/One";
-import * as THREE from "three";
 import { useAnimationFrame } from "./Models/animation";
 import MModel from "./Models/MModel";
 import OneModel from "./Models/OneModel";
@@ -32,9 +27,9 @@ function Scene() {
 
   return (
     <Canvas camera={{ fov: 75, near: 0.1, far: 1000, position: [0, 0, 3] }}>
-      <ambientLight intensity={0.3} />
+      <ambientLight intensity={0.4} />
       <spotLight
-        intensity={0.5}
+        intensity={0.7}
         angle={0.1}
         penumbra={1}
         position={[10, 15, -5]}

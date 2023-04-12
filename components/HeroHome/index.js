@@ -13,7 +13,6 @@ import {
   Stars,
 } from "@react-three/drei";
 import { Loader } from "@react-three/drei";
-import Model from "./Model";
 import {
   Box,
   Center,
