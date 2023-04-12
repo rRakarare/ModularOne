@@ -76,6 +76,8 @@ const cubes = [
   },
 ];
 
+
+
 function MModel() {
   const props = useGLTF("/M.glb");
 
