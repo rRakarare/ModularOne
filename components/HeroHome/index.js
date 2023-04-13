@@ -30,7 +30,7 @@ export default function HeroHome({ animateLenis }) {
   const grad =
     colorMode === "light"
       ? "linear-gradient(90deg, #ffffff 20%, #a5a3a3)"
-      : `linear-gradient(60deg, ${theme.colors.dark2} 50%, #848484)`;
+      : `linear-gradient(60deg, ${theme.colors.dark2} 50%, #3E3E3E)`;
 
   return (
     <Box
@@ -51,9 +51,9 @@ export default function HeroHome({ animateLenis }) {
           marginTop: "-65px",
         }}
       >
-        <Suspense fallback={null}>
+        
         <Scene />
-        </Suspense>
+        
       </Box>
     </Box>
   );

@@ -2,6 +2,7 @@ import { useAnimations, useGLTF } from "@react-three/drei";
 import React, { useEffect, useRef } from "react";
 import MCube from "./MCube";
 import * as THREE from "three";
+import { useColorModeValue } from "@chakra-ui/react";
 
 const cubes = [
   {
@@ -81,6 +82,8 @@ const cubes = [
 function MModel() {
   const props = useGLTF("/M.glb");
 
+  const colors = useColorModeValue('#263238', '#B8B8B8')
+
   const mCubeFront = useRef();
   const mCubeBack = useRef();
 
@@ -93,7 +96,7 @@ function MModel() {
             name={cube.name}
             position={[...cube.position, 0.1]}
             material={
-              new THREE.MeshPhongMaterial({ color: new THREE.Color("#263238") })
+              new THREE.MeshPhongMaterial({ color: new THREE.Color(colors) })
             }
             geometry={props.nodes[cube.name].geometry}
             morphTargetDictionary={props.nodes[cube.name].morphTargetDictionary}
@@ -108,7 +111,7 @@ function MModel() {
             name={cube.name}
             position={[...cube.position, -0.1]}
             material={
-              new THREE.MeshPhongMaterial({ color: new THREE.Color("#263238") })
+              new THREE.MeshPhongMaterial({ color: new THREE.Color(colors) })
             }
             geometry={props.nodes[cube.name].geometry}
             morphTargetDictionary={props.nodes[cube.name].morphTargetDictionary}
