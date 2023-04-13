@@ -9,7 +9,7 @@ export const useAnimationFrame = (callback) => {
   const previousTimeRef = React.useRef();
 
   const animate = (time) => {
-    if (previousTimeRef.current != undefined) {
+    if (previousTimeRef.current != undefined && lenis != undefined) {
       const deltaTime = time - previousTimeRef.current;
       callback(deltaTime, time , lenis);
     }

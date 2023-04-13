@@ -34,7 +34,7 @@ function MCube({
   const rand = Math.random() / 2;
 
   const vec = new THREE.Vector3();
-  const scaleVec = new THREE.Vector3(0.8,0.8,0.8);
+  const scaleVec = new THREE.Vector3(rand,rand,rand);
   const scaleDef = new THREE.Vector3(1,1,1);
 
   useAnimationFrame((deltaTime, time, lenis) => {
@@ -48,7 +48,7 @@ function MCube({
         THREE.MathUtils.lerp(cube.current.morphTargetInfluences[0], 1, 0.25),
       ];
 
-      cube.current.scale.lerp(scaleVec.multiplyScalar(rand), 0.1)
+      cube.current.scale.lerp(scaleVec, 0.1)
 
       cube.current.position.lerp(defaultPos.multiplyScalar(rand * 6), 0.1);
       floatMesh({mesh:cube, time, speed:2 ,rotationIntensity:3, floatIntensity:.1, floatingRange: [-0.1, 0.1], rand })

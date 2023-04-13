@@ -5,7 +5,7 @@ export const styles = {
   global: (props) => ({
     body: {
       color: mode("gray.800", "whiteAlpha.900")(props),
-      bg: mode("gray.100", "#1e1e2b")(props),
+      bg: mode("gray.100", "#111117")(props),
     },
   }),
 };
@@ -32,7 +32,7 @@ export const colors = {
   },
 
   dark: "#263238",
-  dark2: "#1e1e2b"
+  dark2: "#111117"
 };
 
 const breakpoints = {

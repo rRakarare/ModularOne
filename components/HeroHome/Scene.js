@@ -66,8 +66,8 @@ function Scene() {
 
   return (
     <Canvas camera={{ fov: 75, near: 0.1, far: 1000, position: [0, 0, 3] }}>
-      <pointLight intensity={0.3} position={[1, 2, 1]} />
-      <ambientLight intensity={0.4} />
+      <pointLight intensity={0.5} position={[1, 2, 1]} />
+      <ambientLight intensity={0.2} />
       <spotLight
         intensity={intensity}
         angle={0.1}
