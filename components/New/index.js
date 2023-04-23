@@ -17,9 +17,7 @@ import { useAnimationFrame } from "../HeroHome/Models/animation";
 
 function New() {
 
-  useAnimationFrame((delta,time,lenis)=> {
-    console.log(lenis.progress)
-  })
+  
 
   return (
     <ReactLenis

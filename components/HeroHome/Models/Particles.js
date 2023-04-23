@@ -31,7 +31,6 @@ function Particles({ count }) {
     useAnimationFrame((deltaTime, time, lenis) => {
     // Pass on a function to the setter of the state
     // to make sure we always have the latest state
-    console.log(lenis.progress)
 
     const t = time / 1000
 
@@ -68,7 +67,7 @@ function Particles({ count }) {
   return (
     <>
       <instancedMesh ref={mesh} args={[null, null, count]}>
-        <boxBufferGeometry args={[0.2, 0.2, 0.2]} />
+        <boxGeometry args={[0.2, 0.2, 0.2]} />
         <meshPhongMaterial color={colors} />
       </instancedMesh>
     </>

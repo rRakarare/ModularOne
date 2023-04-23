@@ -19,6 +19,8 @@ import OneModel from "./Models/OneModel";
 import { useControls } from "leva";
 import { useSpring, animated, config } from "@react-spring/three";
 import Particles from "./Models/Particles";
+import { useScrollStore } from "@/lib/store";
+import Walls from "./Models/HouseModel/Walls";
 
 function Scene() {
   const { intensity, x, y, z } = useControls("SpotLight", {
@@ -61,8 +63,31 @@ function Scene() {
   }, []);
 
   const { scale } = useSpring({ scale: active ? 1 : 0, config: config.gentle });
-  const m1ref = useRef()
+  const m1ref = useRef();
 
+  const { scrollStates, setStates } = useScrollStore();
+
+  useLenis((lenis) => {
+    const scrollKeys = Object.keys(scrollStates);
+
+    scrollKeys.forEach((key) => {
+      if (
+        scrollStates[key].active === false &&
+        lenis.progress > scrollStates[key].value
+      ) {
+        setStates(key, true);
+      }
+      if (
+        scrollStates[key].active === true &&
+        lenis.progress <= scrollStates[key].value
+      ) {
+        setStates(key, false);
+      }
+    });
+
+  });
+
+  
 
   return (
     <Canvas camera={{ fov: 75, near: 0.1, far: 1000, position: [0, 0, 3] }}>
@@ -77,15 +102,14 @@ function Scene() {
       <Environment preset="city" blur={1} />
 
       <Suspense fallback={null}>
-
-      <animated.group scale={scale}>
-        <Particles count={500} />
-        <group ref={m1ref}>
-          <MModel />
-          <OneModel />
-        </group>
-      </animated.group>
-
+        <animated.group scale={scale}>
+          <Particles count={500} />
+          <group ref={m1ref}>
+            <MModel />
+            <OneModel />
+          </group>
+          < Walls />
+        </animated.group>
       </Suspense>
     </Canvas>
   );

@@ -77,10 +77,17 @@ const cubes = [
   },
 ];
 
+const wallPositions = {
+  ModA1: [0.35895288, 0.24625991],
+  ModA2: [0.35895288, -0.5381],
+  ModA3: [-0.41362715, 0.24625991],
+  ModA4: [-0.41362715, -0.5381],
+}
+
 
 
 function MModel() {
-  const props = useGLTF("/M.glb");
+  const props = useGLTF("/M2.glb");
 
   const colors = useColorModeValue('#263238', '#B8B8B8')
 
@@ -101,6 +108,8 @@ function MModel() {
             geometry={props.nodes[cube.name].geometry}
             morphTargetDictionary={props.nodes[cube.name].morphTargetDictionary}
             morphTargetInfluences={props.nodes[cube.name].morphTargetInfluences}
+            wallPosition={wallPositions[cube.name]}
+            isFront={true}
           />
         ))}
       </group>
@@ -116,6 +125,8 @@ function MModel() {
             geometry={props.nodes[cube.name].geometry}
             morphTargetDictionary={props.nodes[cube.name].morphTargetDictionary}
             morphTargetInfluences={props.nodes[cube.name].morphTargetInfluences}
+            wallPosition={wallPositions[cube.name]}
+            isFront={false}
           />
         ))}
       </group>
