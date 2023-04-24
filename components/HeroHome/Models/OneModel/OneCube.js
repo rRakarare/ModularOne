@@ -1,7 +1,9 @@
 import React, { useEffect, useRef } from "react";
 import { useAnimationFrame } from "../animation";
-import { useAnimations } from "@react-three/drei";
+import { useSpring, animated, config } from "@react-spring/three";
 import * as THREE from "three";
+import { useScrollStore } from "@/lib/store";
+import { floatMesh, resetRotation } from "../helpers";
 
 function OneCube({
   name,
@@ -13,43 +15,100 @@ function OneCube({
 }) {
   const cube = useRef();
 
-  const rand = Math.random() / 2;
+  const { scrollStates } = useScrollStore();
 
-  const vec = new THREE.Vector3();
+  const rand = Math.random()
+
+  const scaleMultiplier = 0.8;
+  const positionMultiplier = 2;
+
+
+  const { positionCube, scaleCube, morphs } = useSpring({
+    positionCube: !scrollStates.aState.active
+      ? position
+      : scrollStates.bState.active
+      ? [0,0,0]
+      : [
+          position[0] * rand * positionMultiplier,
+          position[1] * rand * positionMultiplier,
+          position[2] * rand * positionMultiplier,
+        ],
+    scaleCube: !scrollStates.aState.active
+      ? [1, 1, 1]
+      : scrollStates.bState.active
+      ? [0,0,0]
+      : [
+          rand * scaleMultiplier,
+          rand * scaleMultiplier,
+          rand * scaleMultiplier,
+        ],
+    morphs: !scrollStates.aState.active
+      ? [0, 0]
+      : [1, 0],
+    delay: (key) => {
+      switch (key) {
+        default:
+          return 0;
+      }
+    },
+
+    config: (key) => {
+      switch (key) {
+        case "posFront":
+          return {
+            mass: 1,
+            friction: 20,
+            tension: 100,
+          };
+
+        default:
+          return {
+            mass: 1,
+            friction: 20,
+            tension: 100,
+            duration: 300
+            
+          };
+      }
+    },
+  });
+
 
   useAnimationFrame((deltaTime, time, lenis) => {
-    const defaultPos = vec.set(...position);
-    const progress = lenis.progress;
-
-    if (name === "ModA1") {
+    if (!scrollStates.aState.active && !scrollStates.bState.active) {
+      resetRotation(cube);
     }
 
-    if (progress >= rand) {
-      cube.current.morphTargetInfluences = [
-        THREE.MathUtils.lerp(cube.current.morphTargetInfluences[0], 1, 0.25),
-      ];
+    if (scrollStates.aState.active && !scrollStates.bState.active) {
+      floatMesh({
+        mesh: cube,
+        time,
+        speed: 2,
+        rotationIntensity: 3,
+        floatIntensity: 0.01,
+        floatingRange: [-0.1, 0.1],
+        rand,
+      });
+    }
 
-      cube.current.position.lerp(defaultPos.multiplyScalar(rand*6), 0.1);
-    } else {
-      cube.current.morphTargetInfluences = [
-        THREE.MathUtils.lerp(cube.current.morphTargetInfluences[0], 0, 0.25),
-      ];
-      cube.current.position.lerp(defaultPos, 0.1);
+    if (scrollStates.bState.active) {
+      resetRotation(cube)
     }
   });
 
   return (
     <group>
-      <mesh
+      <animated.mesh
         castShadow
+        scale={scaleCube}
         receiveShadow
         ref={cube}
-        position={position}
+        position={positionCube}
         name={name}
         material={material}
         geometry={geometry}
         morphTargetDictionary={morphTargetDictionary}
-        morphTargetInfluences={morphTargetInfluences}
+        morphTargetInfluences={morphs}
       />
     </group>
   );

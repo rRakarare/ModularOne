@@ -21,6 +21,7 @@ import { useSpring, animated, config } from "@react-spring/three";
 import Particles from "./Models/Particles";
 import { useScrollStore } from "@/lib/store";
 import Walls from "./Models/HouseModel/Walls";
+import House from "./Models/HouseModel";
 
 function Scene() {
   const { intensity, x, y, z } = useControls("SpotLight", {
@@ -108,7 +109,7 @@ function Scene() {
             <MModel />
             <OneModel />
           </group>
-          < Walls />
+          < House />
         </animated.group>
       </Suspense>
     </Canvas>

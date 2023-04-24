@@ -8,15 +8,16 @@ function Walls(props) {
 
   const { nodes, materials } = useGLTF("/House/walls.glb");
 
-  const { rotat, posGround, posFront, scale, opacity } = useSpring({
+  const { rotat, posGround, posFront, posBack, posLevel, scale, opacity } = useSpring({
     rotat: scrollStates.bState.active ? [0, 0, 0] : [0, -8, 0],
     posGround: scrollStates.bState.active ? [0, 0, 0] : [0, -3, 0],
     posFront: scrollStates.bState.active ? [0, 0, 0] : [0, 0, 3],
+    posBack: scrollStates.bState.active ? [0, 0, 0] : [0, 0, -3],
+    posLevel: scrollStates.bState.active ? [0, 0, 0] : [0, 3, 0],
     scale: scrollStates.bState.active ? 1 : 0.7,
     opacity: scrollStates.bState.active ? 1 : 0,
     delay: (key) => {
       switch (key) {
-
         default:
           return 0;
       }
@@ -55,16 +56,19 @@ function Walls(props) {
           <animated.meshPhongMaterial opacity={opacity} transparent />
         </mesh>
       </animated.group>
-      <mesh
-        name="level"
-        castShadow
-        receiveShadow
-        geometry={nodes.level.geometry}
-        material={nodes.level.material}
-        position={[-0.19614783, 0.43771583, -0.06015918]}
-      >
-        <animated.meshPhongMaterial opacity={opacity} transparent />
-      </mesh>
+      <animated.group position={posLevel}>
+        <mesh
+          name="level"
+          castShadow
+          receiveShadow
+          geometry={nodes.level.geometry}
+          material={nodes.level.material}
+          position={[-0.19614783, 0.43771583, -0.06015918]}
+        >
+          <animated.meshPhongMaterial opacity={opacity} transparent />
+        </mesh>
+      </animated.group>
+      <animated.group position={posBack}>
       <mesh
         name="back"
         castShadow
@@ -75,6 +79,7 @@ function Walls(props) {
       >
         <animated.meshPhongMaterial opacity={opacity} transparent />
       </mesh>
+      </animated.group>
       <animated.group position={posFront}>
         <mesh
           name="front"
@@ -91,6 +96,6 @@ function Walls(props) {
   );
 }
 
-useGLTF.preload("/walls.glb");
+useGLTF.preload("/House/walls.glb");
 
 export default Walls;
