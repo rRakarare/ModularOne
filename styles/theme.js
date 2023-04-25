@@ -43,6 +43,11 @@ const breakpoints = {
   '2xl': '1751px',
 }
 
-const customTheme = extendTheme({ styles, colors, breakpoints });
+const config = {
+  initialColorMode: 'dark',
+  useSystemColorMode: false,
+}
+
+const customTheme = extendTheme({ styles, colors, breakpoints, config });
 
 export default customTheme;
