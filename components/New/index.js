@@ -29,18 +29,6 @@ function New() {
       <HeroHome />
       <Box height={"100vh"} />
       <Box mx={"300px"}>
-        <VStack
-          width={"-webkit-fit-content"}
-          position={"sticky"}
-          top={"35vh"}
-          alignItems={"flex-start"}
-        >
-          <Heading fontSize={"9xl"}>Modular</Heading>{" "}
-          <Heading fontSize={"9xl"} color={"yellow.300"}>
-            One
-          </Heading>
-        </VStack>
-        <Heading></Heading>
 
         <HStack mt={"100vh"} justifyContent={"space-between"}>
           <Box width={"50vw"} />
