@@ -33,8 +33,8 @@ function MCube({
 
   const vec = new THREE.Vector3();
 
-  const scaleMultiplier = 0.3;
-  const positionMultiplier = 3;
+  const scaleMultiplier = 0.9;
+  const positionMultiplier = 2;
 
 
 
@@ -76,19 +76,16 @@ function MCube({
 
     config: (key) => {
       switch (key) {
-        case "posFront":
-          return {
-            mass: 1,
-            friction: 20,
-            tension: 100,
-          };
+        case "positionCube":
+          return config.gentle;
+        case "scaleCube":
+          return config.gentle;
 
         default:
           return {
             mass: 1,
             friction: 20,
             tension: 100,
-            duration: 300
             
           };
       }

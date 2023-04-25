@@ -13,7 +13,7 @@ function Walls(props) {
     posGround: scrollStates.bState.active ? [0, 0, 0] : [0, -3, 0],
     posFront: scrollStates.bState.active ? [0, 0, 0] : [0, 0, 3],
     posBack: scrollStates.bState.active ? [0, 0, 0] : [0, 0, -3],
-    posLevel: scrollStates.bState.active ? [0, 0, 0] : [0, 3, 0],
+    posLevel: scrollStates.bState.active ? [0, 0, 0] : [0, 6, 0],
     scale: scrollStates.bState.active ? 1 : 0.7,
     opacity: scrollStates.bState.active ? 1 : 0,
     delay: (key) => {

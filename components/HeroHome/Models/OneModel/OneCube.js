@@ -19,7 +19,7 @@ function OneCube({
 
   const rand = Math.random()
 
-  const scaleMultiplier = 0.8;
+  const scaleMultiplier = 0.9;
   const positionMultiplier = 2;
 
 
@@ -54,19 +54,14 @@ function OneCube({
 
     config: (key) => {
       switch (key) {
-        case "posFront":
-          return {
-            mass: 1,
-            friction: 20,
-            tension: 100,
-          };
+        case "scaleCube":
+          return config.wobbly;
 
         default:
           return {
             mass: 1,
             friction: 20,
             tension: 100,
-            duration: 300
             
           };
       }

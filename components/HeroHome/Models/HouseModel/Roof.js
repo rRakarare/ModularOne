@@ -7,7 +7,7 @@ function Roof(props) {
   const { scrollStates } = useScrollStore();
 
   const { posTop, posLeft, posRight, opacity, opacityTop } = useSpring({
-    posTop: scrollStates.bState.active ? [0, 0, 0] : [0, 3, 0],
+    posTop: scrollStates.bState.active ? [0, 0, 0] : [0, 6, 0],
     posLeft: scrollStates.bState.active ? [0, 0, 0] : [3, 0, 0],
     posRight: scrollStates.bState.active ? [0, 0, 0] : [-3, 0, 0],
     opacity: scrollStates.bState.active ? 1 : 0,

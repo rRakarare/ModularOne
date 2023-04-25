@@ -7,7 +7,7 @@ function Stair(props) {
 
 
   const { position, opacity } = useSpring({
-    position: scrollStates.bState.active ? [0, 0, 0] : [0, 3, 0],
+    position: scrollStates.bState.active ? [0, 0, 0] : [0, 6, 0],
     opacity: scrollStates.bState.active ? 1 : 0,
 
     delay: props.number * 50,

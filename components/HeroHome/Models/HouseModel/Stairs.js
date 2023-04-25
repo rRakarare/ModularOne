@@ -63,8 +63,8 @@ function Stairs(props) {
   const { scrollStates } = useScrollStore();
 
   const { posGrid, posRail, opacity } = useSpring({
-    posGrid: scrollStates.bState.active ? [0, 0, 0] : [0, 3, 0],
-    posRail: scrollStates.bState.active ? [0, 0, 0] : [0, 3, 0],
+    posGrid: scrollStates.bState.active ? [0, 0, 0] : [0, 6, 0],
+    posRail: scrollStates.bState.active ? [0, 0, 0] : [0, 6, 0],
     opacity: scrollStates.bState.active ? 1 : 0,
 
     delay: (key) => {
