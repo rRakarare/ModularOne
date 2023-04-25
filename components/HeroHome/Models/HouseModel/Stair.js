@@ -5,7 +5,6 @@ import { useScrollStore } from "@/lib/store";
 function Stair(props) {
   const { scrollStates } = useScrollStore();
 
-  console.log(props.number)
 
   const { position, opacity } = useSpring({
     position: scrollStates.bState.active ? [0, 0, 0] : [0, 3, 0],

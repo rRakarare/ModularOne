@@ -22,6 +22,7 @@ import Particles from "./Models/Particles";
 import { useScrollStore } from "@/lib/store";
 import Walls from "./Models/HouseModel/Walls";
 import House from "./Models/HouseModel";
+import Main from "./Main";
 
 function Scene() {
   const { intensity, x, y, z } = useControls("SpotLight", {
@@ -57,15 +58,7 @@ function Scene() {
     },
   });
 
-  const [active, setActive] = useState(false);
 
-  useEffect(() => {
-    setActive(true);
-  }, []);
-
-  const { scale } = useSpring({ scale: active ? 1 : 0, config: config.gentle });
-  const m1ref = useRef();
-  const sceneRef = useRef();
 
   const { scrollStates, setStates } = useScrollStore();
 
@@ -88,18 +81,7 @@ function Scene() {
     });
   });
 
-  useAnimationFrame((deltaTime, time, lenis) => {
-    const progress = lenis.progress
 
-    console.log(progress)
-
-    if (!scrollStates.aState.active) {
-      sceneRef.current.rotation.set(0,progress * 5,0)
-      sceneRef.current.position.set(-progress * 8,0,0)
-      sceneRef.current.scale.set(1-progress*2,1-progress*2,1-progress*2)
-    }
-
-  });
 
   return (
     <Canvas camera={{ fov: 75, near: 0.1, far: 1000, position: [0, 0, 3] }}>
@@ -114,16 +96,7 @@ function Scene() {
       <Environment preset="city" blur={1} />
 
       <Suspense fallback={null}>
-        <animated.group scale={scale}>
-          <Particles count={500} />
-          <group ref={sceneRef}>
-            <group ref={m1ref}>
-              <MModel />
-              <OneModel />
-            </group>
-            <House />
-          </group>
-        </animated.group>
+        <Main />
       </Suspense>
     </Canvas>
   );
