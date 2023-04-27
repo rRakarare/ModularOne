@@ -2,7 +2,7 @@ import { useAnimations, useGLTF } from "@react-three/drei";
 import React, { useEffect, useRef } from "react";
 import MCube from "./MCube";
 import * as THREE from "three";
-import { useColorModeValue } from "@chakra-ui/react";
+import { useColorModeValue, useToken } from "@chakra-ui/react";
 
 const cubes = [
   {
@@ -89,7 +89,12 @@ const wallPositions = {
 function MModel() {
   const props = useGLTF("/M2.glb");
 
-  const colors = useColorModeValue('#263238', '#B8B8B8')
+  const [house500, houseDark500] = useToken("colors", [
+    "house.500",
+    "houseDark.500",
+  ]);
+
+  const colors = useColorModeValue(houseDark500, house500)
 
   const mCubeFront = useRef();
   const mCubeBack = useRef();

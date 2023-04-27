@@ -3,6 +3,7 @@ import { useGLTF } from "@react-three/drei";
 import { useSpring, animated, config } from "@react-spring/three";
 import Stair from "./Stair";
 import { useScrollStore } from "@/lib/store";
+import { useColorModeValue, useToken } from "@chakra-ui/react";
 
 const stairs = [
   {
@@ -62,6 +63,14 @@ const stairs = [
 function Stairs(props) {
   const { scrollStates } = useScrollStore();
 
+  const [house500, houseDark500, primary100] = useToken("colors", [
+    "house.500",
+    "houseDark.500",
+    "primary.100"
+  ]);
+
+  const colors = useColorModeValue(houseDark500, house500)
+
   const { posGrid, posRail, opacity } = useSpring({
     posGrid: scrollStates.bState.active ? [0, 0, 0] : [0, 6, 0],
     posRail: scrollStates.bState.active ? [0, 0, 0] : [0, 6, 0],
@@ -112,7 +121,7 @@ function Stairs(props) {
           material={materials.acadd2eec1e7}
           position={[0.2320286, -0.25293881, -0.74720037]}
         >
-          <animated.meshPhongMaterial opacity={opacity} transparent />
+          <animated.meshPhongMaterial opacity={opacity} transparent color={colors} />
         </mesh>
       </animated.group>
       <animated.group position={posRail}>
@@ -124,7 +133,7 @@ function Stairs(props) {
           material={materials.acadea5e1b17}
           position={[0.21905485, 0.20220998, -0.58876991]}
         >
-          <animated.meshPhongMaterial opacity={opacity} transparent />
+          <animated.meshPhongMaterial opacity={opacity} transparent color={colors} />
         </mesh>
       </animated.group>
     </group>

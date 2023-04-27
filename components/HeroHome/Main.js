@@ -22,11 +22,10 @@ function Main() {
 
     useAnimationFrame((deltaTime, time, lenis) => {
         const progress = lenis.progress
-    
-        console.log(progress)
+        sceneRef.current.rotation.set(0,progress * 10,0)
     
         if (!scrollStates.aState.active) {
-          sceneRef.current.rotation.set(0,progress * 5,0)
+          
           sceneRef.current.position.set(-progress * 8,0,0)
           sceneRef.current.scale.set(1-progress*2,1-progress*2,1-progress*2)
         }

@@ -2,9 +2,18 @@ import React from "react";
 import { useGLTF } from "@react-three/drei";
 import { useSpring, animated, config } from "@react-spring/three";
 import { useScrollStore } from "@/lib/store";
+import { useColorModeValue, useToken } from "@chakra-ui/react";
 
 function Walls(props) {
   const { scrollStates } = useScrollStore();
+
+  const [house500, houseDark500, primary100] = useToken("colors", [
+    "house.500",
+    "houseDark.500",
+    "primary.100"
+  ]);
+
+  const colors = useColorModeValue(houseDark500, house500)
 
   const { nodes, materials } = useGLTF("/House/walls.glb");
 
@@ -53,7 +62,7 @@ function Walls(props) {
           material={nodes.ground.material}
           position={[-0.09329593, -0.83304822, -0.1005407]}
         >
-          <animated.meshPhongMaterial opacity={opacity} transparent />
+          <animated.meshPhongMaterial opacity={opacity} transparent color={colors} />
         </mesh>
       </animated.group>
       <animated.group position={posLevel}>
@@ -65,7 +74,7 @@ function Walls(props) {
           material={nodes.level.material}
           position={[-0.19614783, 0.43771583, -0.06015918]}
         >
-          <animated.meshPhongMaterial opacity={opacity} transparent />
+          <animated.meshPhongMaterial opacity={opacity} transparent color={colors} />
         </mesh>
       </animated.group>
       <animated.group position={posBack}>
@@ -77,19 +86,20 @@ function Walls(props) {
         material={nodes.back.material}
         position={[-0.09552248, -0.02733513, -0.97930229]}
       >
-        <animated.meshPhongMaterial opacity={opacity} transparent />
+        <animated.meshPhongMaterial opacity={opacity} transparent color={colors} />
       </mesh>
       </animated.group>
       <animated.group position={posFront}>
         <mesh
           name="front"
           castShadow
+          
           receiveShadow
           geometry={nodes.front.geometry}
           material={nodes.front.material}
           position={[-0.08853891, 0.00512398, 0.68745989]}
         >
-          <animated.meshPhongMaterial opacity={opacity} transparent />
+          <animated.meshPhongMaterial opacity={opacity} transparent color={colors} />
         </mesh>
       </animated.group>
     </animated.group>

@@ -14,6 +14,12 @@ export const colors = {
     100: "#f7d147",
     200: "#FCC80B",
   },
+  house: {
+    500: "#FFFFFF",
+  },
+  houseDark: {
+    500: "#616161",
+  },
   one: {
     100: '#f7d147',
     50: '#f7d14772'

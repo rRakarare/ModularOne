@@ -1,9 +1,15 @@
 import React from "react";
 import { useSpring, animated, config } from "@react-spring/three";
 import { useScrollStore } from "@/lib/store";
+import { useColorModeValue, useToken } from "@chakra-ui/react";
 
 function Stair(props) {
   const { scrollStates } = useScrollStore();
+
+  const [primary100] = useToken("colors", [
+    "primary.100"
+  ]);
+
 
 
   const { position, opacity } = useSpring({
@@ -27,7 +33,7 @@ function Stair(props) {
   return (
     <animated.group position={position}>
       <mesh {...props} castShadow receiveShadow>
-        <animated.meshPhongMaterial opacity={opacity} transparent />
+        <animated.meshPhongMaterial opacity={opacity} transparent color={primary100} />
       </mesh>
     </animated.group>
   );

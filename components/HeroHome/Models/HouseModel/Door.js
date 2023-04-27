@@ -2,9 +2,17 @@ import React from "react";
 import { useGLTF } from "@react-three/drei";
 import { useScrollStore } from "@/lib/store";
 import { useSpring, animated, config } from "@react-spring/three";
+import { useColorModeValue, useToken } from "@chakra-ui/react";
 
 function Door(props) {
   const { scrollStates } = useScrollStore();
+
+  const [house500, houseDark500] = useToken("colors", [
+    "house.500",
+    "houseDark.500",
+  ]);
+
+  const colors = useColorModeValue(houseDark500, house500)
 
   const { posFrame, posDoor, posKnots, opacity } = useSpring({
     posFrame: scrollStates.bState.active ? [0, 0, 0] : [0, 0, 3],
@@ -49,7 +57,7 @@ function Door(props) {
           material={materials.acadcf890fb4}
           position={[-0.10672451, -0.20594162, 0.70795488]}
         >
-          <animated.meshPhongMaterial opacity={opacity} transparent />
+          <animated.meshPhongMaterial opacity={opacity} transparent color={colors} />
         </mesh>
       </animated.group>
       <animated.group position={posKnots}>
@@ -61,7 +69,7 @@ function Door(props) {
           material={materials.acad4502a48b}
           position={[-0.2692104, -0.33276075, 0.77695704]}
         >
-          <animated.meshPhongMaterial opacity={opacity} transparent />
+          <animated.meshPhongMaterial opacity={opacity} transparent color={colors} />
         </mesh>
       </animated.group>
       <animated.group position={posDoor}>
@@ -73,7 +81,7 @@ function Door(props) {
           material={materials.acad3e7d5096}
           position={[-0.10563101, -0.30556634, 0.77709192]}
         >
-          <animated.meshPhongMaterial opacity={opacity} transparent />
+          <animated.meshPhongMaterial opacity={opacity} transparent color={colors} />
         </mesh>
       </animated.group>
     </group>
