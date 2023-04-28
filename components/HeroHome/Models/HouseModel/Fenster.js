@@ -14,6 +14,7 @@ function Fenster(props) {
   ]);
 
   const colors = useColorModeValue(houseDark500, house500)
+  const frameColors = useColorModeValue(house500, houseDark500)
 
   const { posFrame, posGlas, posBanc, posFrameInner, posCross, opacity, opacityGlas } = useSpring({
     posFrame: scrollStates.bState.active ? [0, 0, 0] : [0, 0, 3],
@@ -80,7 +81,7 @@ function Fenster(props) {
           material={materials.acad3e7d5096}
           position={[props.xVal, 0.02402735, 0.72844642]}
         >
-          <animated.meshPhongMaterial opacity={opacity} transparent color={colors} />
+          <animated.meshPhongMaterial opacity={opacity} transparent color={frameColors} />
         </mesh>
         <mesh
         name="frameInner"
@@ -90,7 +91,7 @@ function Fenster(props) {
         material={materials.acad3e7d5096}
         position={[props.xVal, 0.02402738, 0.7199741]}
       >
-        <animated.meshPhongMaterial opacity={opacity} transparent color={colors} />
+        <animated.meshPhongMaterial opacity={opacity} transparent color={frameColors} />
       </mesh>
       </animated.group>
       <animated.group position={posCross}>
@@ -102,7 +103,7 @@ function Fenster(props) {
         material={materials.acad3e7d5096}
         position={[props.xVal, 0.02402736, 0.721093]}
       >
-        <animated.meshPhongMaterial opacity={opacity} transparent color={colors} />
+        <animated.meshPhongMaterial opacity={opacity} transparent color={frameColors} />
       </mesh>
       </animated.group>
 

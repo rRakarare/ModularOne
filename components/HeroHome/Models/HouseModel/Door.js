@@ -13,6 +13,7 @@ function Door(props) {
   ]);
 
   const colors = useColorModeValue(houseDark500, house500)
+  const frameColors = useColorModeValue(house500, houseDark500)
 
   const { posFrame, posDoor, posKnots, opacity } = useSpring({
     posFrame: scrollStates.bState.active ? [0, 0, 0] : [0, 0, 3],
@@ -57,7 +58,7 @@ function Door(props) {
           material={materials.acadcf890fb4}
           position={[-0.10672451, -0.20594162, 0.70795488]}
         >
-          <animated.meshPhongMaterial opacity={opacity} transparent color={colors} />
+          <animated.meshPhongMaterial opacity={opacity} transparent color={frameColors} />
         </mesh>
       </animated.group>
       <animated.group position={posKnots}>

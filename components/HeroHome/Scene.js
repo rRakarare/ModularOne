@@ -25,38 +25,7 @@ import House from "./Models/HouseModel";
 import Main from "./Main";
 
 function Scene() {
-  const { intensity, x, y, z } = useControls("SpotLight", {
-    intensity: {
-      value: 2,
-      min: 0,
-      max: 10,
-      step: 0.1,
-    },
-    angle: {
-      value: 0.1,
-      min: 0,
-      max: 10,
-      step: 0.1,
-    },
-    x: {
-      value: 10,
-      min: -10,
-      max: 10,
-      step: 0.1,
-    },
-    y: {
-      value: 10,
-      min: -10,
-      max: 10,
-      step: 0.1,
-    },
-    z: {
-      value: -4.6,
-      min: -10,
-      max: 10,
-      step: 0.1,
-    },
-  });
+
 
 
 
@@ -88,10 +57,10 @@ function Scene() {
       <pointLight intensity={0.5} position={[1, 2, 1]} />
       <ambientLight intensity={0.2} />
       <spotLight
-        intensity={intensity}
+        intensity={2}
         angle={0.1}
         penumbra={1}
-        position={[x, y, z]}
+        position={[10, 10, -4,6]}
       />
       <Environment preset="city" blur={1} />
 

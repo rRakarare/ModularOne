@@ -29,6 +29,7 @@ function Main() {
           sceneRef.current.position.set(-progress * 8,0,0)
           sceneRef.current.scale.set(1-progress*2,1-progress*2,1-progress*2)
         }
+
     
       });
 
