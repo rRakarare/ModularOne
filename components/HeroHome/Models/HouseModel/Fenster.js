@@ -5,7 +5,7 @@ import React from "react";
 import { useColorModeValue, useToken } from "@chakra-ui/react";
 
 function Fenster(props) {
-  const { scrollStates } = useScrollStore();
+  const { scrollState } = useScrollStore();
 
   const [house500, houseDark500, primary100] = useToken("colors", [
     "house.500",
@@ -17,13 +17,13 @@ function Fenster(props) {
   const frameColors = useColorModeValue(house500, houseDark500)
 
   const { posFrame, posGlas, posBanc, posFrameInner, posCross, opacity, opacityGlas } = useSpring({
-    posFrame: scrollStates.bState.active ? [0, 0, 0] : [0, 0, 3],
-    posGlas: scrollStates.bState.active ? [0, 0, 0] : [0, 0, 3],
-    posFrameInner: scrollStates.bState.active ? [0, 0, 0] : [0, 0, 3],
-    posCross: scrollStates.bState.active ? [0, 0, 0] : [0, 0, 3],
-    posBanc: scrollStates.bState.active ? [0, 0, 0] : [0, 0, 3],
-    opacity: scrollStates.bState.active ? 1 : 0,
-    opacityGlas: scrollStates.bState.active ? 0.7 : 0,
+    posFrame: scrollState === "bS" || scrollState === "bM" || scrollState === "cS" || scrollState === "cM" ? [0, 0, 0] : [0, 0, 3],
+    posGlas: scrollState === "bS" || scrollState === "bM" || scrollState === "cS" || scrollState === "cM" ? [0, 0, 0] : [0, 0, 3],
+    posFrameInner: scrollState === "bS" || scrollState === "bM" || scrollState === "cS" || scrollState === "cM" ? [0, 0, 0] : [0, 0, 3],
+    posCross: scrollState === "bS" || scrollState === "bM" || scrollState === "cS" || scrollState === "cM" ? [0, 0, 0] : [0, 0, 3],
+    posBanc: scrollState === "bS" || scrollState === "bM" || scrollState === "cS" || scrollState === "cM" ? [0, 0, 0] : [0, 0, 3],
+    opacity: scrollState === "bS" || scrollState === "bM" || scrollState === "cS" || scrollState === "cM" ? 1 : 0,
+    opacityGlas: scrollState === "bS" || scrollState === "bM" || scrollState === "cS" || scrollState === "cM" ? 0.7 : 0,
     delay: (key) => {
       switch (key) {
         case "posFrame":

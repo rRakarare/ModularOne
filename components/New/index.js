@@ -17,24 +17,18 @@ import { useAnimationFrame } from "../HeroHome/Models/animation";
 import { useScrollStore } from "@/lib/store";
 
 function New() {
-
-  const { scrollStates } = useScrollStore();
-
-  useEffect(() => {
-    console.log("ss",scrollStates.init)
-  }, [scrollStates])
-  
+  const { scrollState } = useScrollStore();
 
 
   const modVariants = {
     visible: { opacity: 1, x: 0 },
     hidden: { opacity: 0, x: "-100%" },
-  }
+  };
 
   const oneVariants = {
     visible: { opacity: 1, x: 0 },
     hidden: { opacity: 0, x: "100%" },
-  }
+  };
 
   return (
     <ReactLenis
@@ -44,11 +38,28 @@ function New() {
       // }}
     >
       <HeroHome />
-      <HStack spacing={4} alignItems={"flex-end"} justifyContent={"center"} position={"fixed"} width={"100vw"} height={"75vh"}>
-        <Box as={motion.div} animate={scrollStates.init.active ? "hidden" : "visible"} variants={modVariants}>
+      <HStack
+        spacing={4}
+        alignItems={"flex-end"}
+        justifyContent={"center"}
+        position={"fixed"}
+        zIndex={-2}
+        width={"100vw"}
+        height={"75vh"}
+      >
+        <Box
+          as={motion.div}
+          animate={scrollState !== "default" ? "hidden" : "visible"}
+          variants={modVariants}
+        >
           <Heading>Modular</Heading>
         </Box>
-        <Box color={"primary.100"} as={motion.div} animate={scrollStates.init.active ? "hidden" : "visible"} variants={oneVariants}>
+        <Box
+          color={"primary.100"}
+          as={motion.div}
+          animate={scrollState !== "default" ? "hidden" : "visible"}
+          variants={oneVariants}
+        >
           <Heading>One</Heading>
         </Box>
       </HStack>
@@ -56,7 +67,7 @@ function New() {
       <Box mx={"10vw"}>
         <Box mb={"80vh"} ml={"auto"} w={"30vw"} textAlign={"left"}>
           <Heading color={"one.100"} mb={4} fontSize={"6xl"}>
-            ALDER VERWALTER UND SOWAS
+            MODULAR
           </Heading>
           <Text fontSize={"2xl"}>
             Bruh iceland iPhone subway tile pitchfork waistcoat. Yr lyft food
@@ -66,7 +77,17 @@ function New() {
         </Box>
         <Box mb={"80vh"} mr={"auto"} w={"30vw"} textAlign={"right"}>
           <Heading color={"one.100"} mb={4} fontSize={"6xl"}>
-            ALDER VERWALTER UND SOWAS
+            DIGITALE GEBÄUDE
+          </Heading>
+          <Text fontSize={"2xl"}>
+            Bruh iceland iPhone subway tile pitchfork waistcoat. Yr lyft food
+            truck try-hard. Fashion axe flexitarian edison bulb narwhal iceland
+            shoreditch lo-fi franzen post-ironic cray la croix blog
+          </Text>
+        </Box>
+        <Box mb={"80vh"} ml={"auto"} w={"30vw"} textAlign={"left"}>
+          <Heading color={"one.100"} mb={4} fontSize={"6xl"}>
+            NACHHALTIG
           </Heading>
           <Text fontSize={"2xl"}>
             Bruh iceland iPhone subway tile pitchfork waistcoat. Yr lyft food

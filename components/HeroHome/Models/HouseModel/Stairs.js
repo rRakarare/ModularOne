@@ -61,7 +61,7 @@ const stairs = [
 ];
 
 function Stairs(props) {
-  const { scrollStates } = useScrollStore();
+  const { scrollState } = useScrollStore();
 
   const [house500, houseDark500, primary100] = useToken("colors", [
     "house.500",
@@ -72,9 +72,9 @@ function Stairs(props) {
   const colors = useColorModeValue(houseDark500, house500)
 
   const { posGrid, posRail, opacity } = useSpring({
-    posGrid: scrollStates.bState.active ? [0, 0, 0] : [0, 6, 0],
-    posRail: scrollStates.bState.active ? [0, 0, 0] : [0, 6, 0],
-    opacity: scrollStates.bState.active ? 1 : 0,
+    posGrid: scrollState === "bS" || scrollState === "bM" || scrollState === "cS" || scrollState === "cM" ? [0, 0, 0] : [0, 6, 0],
+    posRail: scrollState === "bS" || scrollState === "bM" || scrollState === "cS" || scrollState === "cM" ? [0, 0, 0] : [0, 6, 0],
+    opacity: scrollState === "bS" || scrollState === "bM" || scrollState === "cS" || scrollState === "cM" ? 1 : 0,
 
     delay: (key) => {
       switch (key) {

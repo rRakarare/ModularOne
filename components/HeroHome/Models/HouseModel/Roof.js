@@ -5,7 +5,7 @@ import { useSpring, animated, config } from "@react-spring/three";
 import { useColorModeValue, useToken } from "@chakra-ui/react";
 
 function Roof(props) {
-  const { scrollStates } = useScrollStore();
+  const { scrollState } = useScrollStore();
 
   const [house500, houseDark500] = useToken("colors", [
     "house.500",
@@ -15,18 +15,18 @@ function Roof(props) {
   const colors = useColorModeValue(houseDark500, house500)
 
   const { posTop, posLeft, posRight, opacity, opacityTop } = useSpring({
-    posTop: scrollStates.bState.active ? [0, 0, 0] : [0, 6, 0],
-    posLeft: scrollStates.bState.active ? [0, 0, 0] : [3, 0, 0],
-    posRight: scrollStates.bState.active ? [0, 0, 0] : [-3, 0, 0],
-    opacity: scrollStates.bState.active ? 1 : 0,
-    opacityTop: scrollStates.bState.active ? 1 : 0,
+    posTop: scrollState === "bS" || scrollState === "bM" || scrollState === "cS" || scrollState === "cM" ? [0, 0, 0] : [0, 6, 0],
+    posLeft: scrollState === "bS" || scrollState === "bM" || scrollState === "cS" || scrollState === "cM" ? [0, 0, 0] : [3, 0, 0],
+    posRight: scrollState === "bS" || scrollState === "bM" || scrollState === "cS" || scrollState === "cM" ? [0, 0, 0] : [-3, 0, 0],
+    opacity: scrollState === "bS" || scrollState === "bM" || scrollState === "cS" || scrollState === "cM" ? 1 : 0,
+    opacityTop: scrollState === "bS" || scrollState === "bM" || scrollState === "cS" || scrollState === "cM" ? 1 : 0,
 
     delay: (key) => {
       switch (key) {
         case "posTop":
-          return scrollStates.bState.active ? 600 : 0;
+          return scrollState === "bS" || scrollState === "bM" || scrollState === "cS" || scrollState === "cM" ? 600 : 0;
         case "opacityTop":
-          return scrollStates.bState.active ? 600 : 0;
+          return scrollState === "bS" || scrollState === "bM" || scrollState === "cS" || scrollState === "cM" ? 600 : 0;
         default:
           return 0;
       }

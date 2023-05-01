@@ -1,11 +1,9 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useAnimationFrame } from "../animation";
 import { useSpring, animated, config } from "@react-spring/three";
 import * as THREE from "three";
 import { useScrollStore } from "@/lib/store";
 import { floatMesh, resetRotation } from "../helpers";
-
-
 
 function MCube({
   name,
@@ -19,54 +17,67 @@ function MCube({
 }) {
   const cube = useRef();
 
-  const { scrollStates } = useScrollStore();
+  const store = useScrollStore();
 
-  useEffect(() => {
-    console.log(
-      scrollStates.aState.active,
-      scrollStates.bState.active,
-      scrollStates.cState.active
-    );
-  }, [scrollStates]);
+  const scrollState = store.scrollState;
+  const scrollMap = store.scrollMap;
 
-  const rand = Math.random()
+  const [rand] = useState(() => Math.random());
 
   const vec = new THREE.Vector3();
 
   const scaleMultiplier = 0.9;
   const positionMultiplier = 2;
 
-
-
   const isWall = wallPosition ? true : false;
   const xWall = isFront ? -1.51325 : 1.32221;
   const wallPositionVec = isWall ? [xWall, ...wallPosition] : [0, 0, 0];
-  const wallScale = isWall ? [1,1,1] : [0, 0, 0];
+  const wallScale = isWall ? [1, 1, 1] : [0, 0, 0];
 
   const { positionCube, scaleCube, morphs } = useSpring({
-    positionCube: !scrollStates.aState.active
-      ? position
-      : scrollStates.bState.active
-      ? wallPositionVec
-      : [
-          position[0] * rand * positionMultiplier,
-          position[1] * rand * positionMultiplier,
-          position[2] * rand * positionMultiplier,
-        ],
-    scaleCube: !scrollStates.aState.active
-      ? [1, 1, 1]
-      : scrollStates.bState.active
-      ? wallScale
-      : [
-          rand * scaleMultiplier,
-          rand * scaleMultiplier,
-          rand * scaleMultiplier,
-        ],
-    morphs: !scrollStates.aState.active
-      ? [0, 0]
-      : scrollStates.bState.active
-      ? [0, 1]
-      : [1, 0],
+    positionCube:
+      scrollState === "init" || scrollState === "default"
+        ? position
+        : scrollState === "aS" || scrollState === "aM"
+        ? [
+            position[0] * rand * positionMultiplier,
+            position[1] * rand * positionMultiplier,
+            position[2] * rand * positionMultiplier,
+          ]
+        : scrollState === "bS" ||
+          scrollState === "bM" ||
+          scrollState === "cS" ||
+          scrollState === "cM"
+        ? wallPositionVec
+        : [0, 0, 0],
+
+    scaleCube:
+      scrollState === "init" || scrollState === "default"
+        ? [1, 1, 1]
+        : scrollState === "aS" || scrollState === "aM"
+        ? [
+            rand * scaleMultiplier,
+            rand * scaleMultiplier,
+            rand * scaleMultiplier,
+          ]
+        : scrollState === "bS" ||
+          scrollState === "bM" ||
+          scrollState === "cS" ||
+          scrollState === "cM"
+        ? wallScale
+        : [0, 0, 0],
+    morphs:
+      scrollState === "init" || scrollState === "default"
+        ? [0, 0]
+        : scrollState === "aS" || scrollState === "aM"
+        ? [1, 0]
+        : scrollState === "bS" ||
+          scrollState === "bM" ||
+          scrollState === "cS" ||
+          scrollState === "cM"
+        ? [0, 1]
+        : [0, 0],
+
     delay: (key) => {
       switch (key) {
         default:
@@ -86,36 +97,9 @@ function MCube({
             mass: 1,
             friction: 20,
             tension: 100,
-            
           };
       }
     },
-  });
-
-
-
-  useAnimationFrame((deltaTime, time, lenis) => {
-
-
-    if (!scrollStates.aState.active && !scrollStates.bState.active) {
-      resetRotation(cube);
-    }
-
-    if (scrollStates.aState.active && !scrollStates.bState.active) {
-      floatMesh({
-        mesh: cube,
-        time,
-        speed: 2,
-        rotationIntensity: 3,
-        floatIntensity: 0.01,
-        floatingRange: [-0.1, 0.1],
-        rand,
-      });
-    }
-
-    if (scrollStates.bState.active) {
-      resetRotation(cube)
-    }
   });
 
   return (

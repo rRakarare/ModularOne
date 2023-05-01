@@ -5,7 +5,7 @@ import { useScrollStore } from "@/lib/store";
 import { useColorModeValue, useToken } from "@chakra-ui/react";
 
 function Walls(props) {
-  const { scrollStates } = useScrollStore();
+  const { scrollState } = useScrollStore();
 
   const [house500, houseDark500, primary100] = useToken("colors", [
     "house.500",
@@ -18,13 +18,13 @@ function Walls(props) {
   const { nodes, materials } = useGLTF("/House/walls.glb");
 
   const { rotat, posGround, posFront, posBack, posLevel, scale, opacity } = useSpring({
-    rotat: scrollStates.bState.active ? [0, 0, 0] : [0, -8, 0],
-    posGround: scrollStates.bState.active ? [0, 0, 0] : [0, -3, 0],
-    posFront: scrollStates.bState.active ? [0, 0, 0] : [0, 0, 3],
-    posBack: scrollStates.bState.active ? [0, 0, 0] : [0, 0, -3],
-    posLevel: scrollStates.bState.active ? [0, 0, 0] : [0, 6, 0],
-    scale: scrollStates.bState.active ? 1 : 0.7,
-    opacity: scrollStates.bState.active ? 1 : 0,
+    rotat: scrollState === "bS" || scrollState === "bM" || scrollState === "cS" || scrollState === "cM" ? [0, 0, 0] : [0, -8, 0],
+    posGround: scrollState === "bS" || scrollState === "bM" || scrollState === "cS" || scrollState === "cM" ? [0, 0, 0] : [0, -3, 0],
+    posFront: scrollState === "bS" || scrollState === "bM" || scrollState === "cS" || scrollState === "cM" ? [0, 0, 0] : [0, 0, 3],
+    posBack: scrollState === "bS" || scrollState === "bM" || scrollState === "cS" || scrollState === "cM" ? [0, 0, 0] : [0, 0, -3],
+    posLevel: scrollState === "bS" || scrollState === "bM" || scrollState === "cS" || scrollState === "cM" ? [0, 0, 0] : [0, 6, 0],
+    scale: scrollState === "bS" || scrollState === "bM" || scrollState === "cS" || scrollState === "cM" ? 1 : 0.7,
+    opacity: scrollState === "bS" || scrollState === "bM" || scrollState === "cS" || scrollState === "cM" ? 1 : 0,
     delay: (key) => {
       switch (key) {
         default:

@@ -5,7 +5,7 @@ import { useSpring, animated, config } from "@react-spring/three";
 import { useColorModeValue, useToken } from "@chakra-ui/react";
 
 function Door(props) {
-  const { scrollStates } = useScrollStore();
+  const { scrollState } = useScrollStore();
 
   const [house500, houseDark500] = useToken("colors", [
     "house.500",
@@ -16,10 +16,10 @@ function Door(props) {
   const frameColors = useColorModeValue(house500, houseDark500)
 
   const { posFrame, posDoor, posKnots, opacity } = useSpring({
-    posFrame: scrollStates.bState.active ? [0, 0, 0] : [0, 0, 3],
-    posDoor: scrollStates.bState.active ? [0, 0, 0] : [0, 0, 3],
-    posKnots: scrollStates.bState.active ? [0, 0, 0] : [0, 0, 3],
-    opacity: scrollStates.bState.active ? 1 : 0,
+    posFrame: scrollState === "bS" || scrollState === "bM" || scrollState === "cS" || scrollState === "cM" ? [0, 0, 0] : [0, 0, 3],
+    posDoor: scrollState === "bS" || scrollState === "bM" || scrollState === "cS" || scrollState === "cM" ? [0, 0, 0] : [0, 0, 3],
+    posKnots: scrollState === "bS" || scrollState === "bM" || scrollState === "cS" || scrollState === "cM" ? [0, 0, 0] : [0, 0, 3],
+    opacity: scrollState === "bS" || scrollState === "bM" || scrollState === "cS" || scrollState === "cM" ? 1 : 0,
     
     delay: (key) => {
       switch (key) {

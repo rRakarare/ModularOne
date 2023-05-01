@@ -4,7 +4,7 @@ import { useScrollStore } from "@/lib/store";
 import { useColorModeValue, useToken } from "@chakra-ui/react";
 
 function Stair(props) {
-  const { scrollStates } = useScrollStore();
+  const { scrollState } = useScrollStore();
 
   const [primary100] = useToken("colors", [
     "primary.100"
@@ -13,8 +13,8 @@ function Stair(props) {
 
 
   const { position, opacity } = useSpring({
-    position: scrollStates.bState.active ? [0, 0, 0] : [0, 6, 0],
-    opacity: scrollStates.bState.active ? 1 : 0,
+    position: scrollState === "bS" || scrollState === "bM" || scrollState === "cS" || scrollState === "cM" ? [0, 0, 0] : [0, 6, 0],
+    opacity: scrollState === "bS" || scrollState === "bM" || scrollState === "cS" || scrollState === "cM" ? 1 : 0,
 
     delay: props.number * 50,
 

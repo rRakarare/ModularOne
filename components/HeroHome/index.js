@@ -38,7 +38,7 @@ export default function HeroHome({ animateLenis }) {
       h={"100vh"}
       position={"fixed"}
       style={{
-        zIndex: -1,
+        zIndex: -2,
       }}
     >
       <Box

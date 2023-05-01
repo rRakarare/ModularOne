@@ -25,13 +25,14 @@ import House from "./Models/HouseModel";
 import Main from "./Main";
 
 function Scene() {
+  const { scrollMap, scrollState, setState, scrollStates, setStates } = useScrollStore();
 
-
-
-
-  const { scrollStates, setStates } = useScrollStore();
+  useEffect(() => {
+    console.log(scrollState);
+  }, [scrollState]);
 
   useLenis((lenis) => {
+
     const scrollKeys = Object.keys(scrollStates);
 
     scrollKeys.forEach((key) => {
@@ -48,9 +49,21 @@ function Scene() {
         setStates(key, false);
       }
     });
+
+    const keys = Object.keys(scrollMap);
+
+    keys.forEach((key, i) => {
+      const max = scrollMap[keys[i + 1]] ? scrollMap[keys[i + 1]] : 1;
+
+      if (
+        lenis.progress >= scrollMap[key] &&
+        lenis.progress < max &&
+        scrollState !== key
+      ) {
+        setState(key);
+      }
+    });
   });
-
-
 
   return (
     <Canvas camera={{ fov: 75, near: 0.1, far: 1000, position: [0, 0, 3] }}>
@@ -60,7 +73,7 @@ function Scene() {
         intensity={2}
         angle={0.1}
         penumbra={1}
-        position={[10, 10, -4,6]}
+        position={[10, 10, -4, 6]}
       />
       <Environment preset="city" blur={1} />
 

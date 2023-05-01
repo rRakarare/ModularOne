@@ -28,6 +28,11 @@ export const floatMesh = ({
   floatingRange,
   rand,
 }) => {
+
+  if (mesh.current.name === "ModA1") {
+    
+  }
+
   mesh.current.rotation.x =
     (Math.cos((time / 1000 / 4 + rand * 10) * speed) / 8) * rotationIntensity;
   mesh.current.rotation.y =
