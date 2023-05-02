@@ -7,6 +7,7 @@ import { useSpring, animated, config } from "@react-spring/three";
 import { useAnimationFrame } from "./Models/animation";
 import { useScrollStore } from "@/lib/store";
 import { useLenis } from "@studio-freight/react-lenis";
+import Lamp from "./Models/HouseModel/Lamp";
 
 function Main() {
   const { scrollState, setMap, scrollMap } = useScrollStore();
@@ -109,6 +110,7 @@ function Main() {
   return (
     <animated.group scale={scale}>
       <Particles count={500} />
+      <Lamp />
       <group ref={sceneRef}>
         <group ref={m1ref}>
           <MModel />
