@@ -17,7 +17,7 @@ function Main() {
     init: 0.01,
 
     aS: 0.25,
-    aM: 0.35,
+    aM: 0.38,
 
     bS: 0.5,
     bM: 0.6,
@@ -42,7 +42,15 @@ function Main() {
 
   const posM = 2;
   const scaleM = 1 / 2;
-  const rotM = 6;
+
+  const rot1 = Math.PI / 3
+  const rot2 = Math.PI
+  const rot3 = Math.PI / 3
+  const rot4 = Math.PI / 3
+  const rot5 = Math.PI / 6
+  const rot6 = Math.PI / 6
+  const rot7 = Math.PI / 6
+
 
   const rotA = Math.PI / 3;
   const rotB = (Math.PI * 2) / 3;
@@ -68,27 +76,32 @@ function Main() {
 
     if (scrollState === "default" || scrollState === "init") {
       sceneRef.current.position.set((-progress / cBar) * posM, 0, 0);
-      sceneRef.current.rotation.set(0, (progress / cBar) * rotA, 0);
+      sceneRef.current.rotation.set(0, (progress / cBar) * rot1, 0);
       sceneRef.current.scale.set(
         1 - (progress / cBar) * (1 - scaleM),
         1 - (progress / cBar) * (1 - scaleM),
         1 - (progress / cBar) * (1 - scaleM)
       );
     } else if (scrollState === "aS") {
-      sceneRef.current.rotation.set(0, rotA, 0);
+      sceneRef.current.rotation.set(0, rot1 + cProgress * rot2, 0);
       sceneRef.current.position.set(-posM, 0, 0);
     } else if (scrollState === "aM") {
       sceneRef.current.position.set(-posM + cProgress * posM * 2, 0, 0);
-      sceneRef.current.rotation.set(0, rotA + cProgress * rotB, 0);
+      sceneRef.current.rotation.set(0, rot1 + rot2 + cProgress * rot3, 0);
     } else if (scrollState === "bS") {
       sceneRef.current.position.set(posM, 0, 0);
+      sceneRef.current.rotation.set(0, rot1 + rot2 + rot3 + cProgress * rot4, 0);
     } else if (scrollState === "bM") {
       sceneRef.current.position.set(posM - cProgress * posM * 2, 0, 0);
+      sceneRef.current.rotation.set(0, rot1 + rot2 + rot3 + rot4 + cProgress * rot5, 0);
     } else if (scrollState === "cS") {
       sceneRef.current.position.set(-posM, 0, 0);
+      sceneRef.current.rotation.set(0, rot1 + rot2 + rot3 + rot4 + rot5 + cProgress * rot6, 0);
     } else if (scrollState === "cM") {
       sceneRef.current.position.set(-posM + cProgress * posM, 0, 0);
-    }
+      sceneRef.current.rotation.set(0, rot1 + rot2 + rot3 + rot4 + rot5 + rot6+ cProgress * rot7, 0);
+    } 
+    
   });
 
   useAnimationFrame((deltaTime, time, lenis) => {});
