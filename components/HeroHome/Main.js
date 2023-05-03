@@ -110,7 +110,6 @@ function Main() {
   return (
     <animated.group scale={scale}>
       <Particles count={500} />
-      <Lamp />
       <group ref={sceneRef}>
         <group ref={m1ref}>
           <MModel />

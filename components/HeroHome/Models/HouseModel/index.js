@@ -4,6 +4,8 @@ import Fenster from './Fenster'
 import Door from './Door'
 import Roof from './Roof'
 import Stairs from './Stairs'
+import Lamp from './Lamp'
+import Solar from './Solar'
 
 function House() {
   return (
@@ -14,6 +16,8 @@ function House() {
       <Door />
       <Roof />
       <Stairs />
+      <Solar />
+      <Lamp />
     </group>
   )
 }

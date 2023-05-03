@@ -1,23 +1,50 @@
-import { SpotLight } from "@react-three/drei";
-import React from "react";
+import { useScrollStore } from "@/lib/store";
+import { useColorModeValue, useToken } from "@chakra-ui/react";
+import { SpotLight, useGLTF } from "@react-three/drei";
+import React, { useRef } from "react";
 
-function Lamp() {
+function Lamp(props) {
+  const { scrollState } = useScrollStore();
+
+  const [house500, houseDark500, primary100] = useToken("colors", [
+    "house.500",
+    "houseDark.500",
+    "primary.100"
+  ]);
+
+  const colors = useColorModeValue(house500, houseDark500);
+
+  const { nodes, materials } = useGLTF("/House/lantern.glb");
   return (
-    <group position={[-1.5, 1, 0.2]}>
-      <SpotLight
-        position={[0, 0, 0]}
-        distance={5}
-        angle={0.3}
-
-        attenuation={3}
-        anglePower={7} // Diffuse-cone anglePower (default: 5)
-      />
-      <mesh scale={0.3} name="top" castShadow receiveShadow>
-        <boxGeometry args={[1, 1, 1]} />
-        <meshPhongMaterial />
-      </mesh>
+    <group {...props} dispose={null}>
+      <group name="lantern1" position={[0.23719631, 0.28324866, 0.9044174]}>
+        <mesh
+          name="Cube011"
+          castShadow
+          receiveShadow
+          geometry={nodes.Cube011.geometry}
+        >
+          <meshPhongMaterial
+            color={colors}
+          />
+        </mesh>
+        <mesh
+          name="Cube011_1"
+          castShadow
+          receiveShadow
+          geometry={nodes.Cube011_1.geometry}
+        >
+          <meshPhongMaterial
+            emissive={true}
+            emissiveIntensity={100}
+            color={primary100}
+          />
+        </mesh>
+      </group>
     </group>
   );
 }
+
+useGLTF.preload("/House/lantern.glb");
 
 export default Lamp;
